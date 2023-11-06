@@ -4,7 +4,8 @@ import pandas as pd
 import numpy as np
 
 #Read json file
-f = open('C:/Users/amy.grimwood/Downloads/JSON_eg_nodisease.json')
+f = open('/home/amy/git/softeng_module/src/JSON_eg.json')
+
 
 #Convert json object to df
 data = json.load(f)
@@ -45,10 +46,10 @@ try:
     gene_info = data['genes']
     gene_list = []
     for x in gene_info:
-        genes = x.get('gene_data',{}).get('hgnc_symbol')
+        genes = x.get('gene_data',{}).get('hgnc_id')
         gene_list.append(genes)
 except KeyError:
-    print('KeyError:PanelApp output JSON doesn\' contain \'genes\' or \'hgnc_symbol\' key')
+    print('KeyError:PanelApp output JSON doesn\' contain \'genes\' or \'hgnc_id\' key')
     gene_list = np.nan
 
 #Make df containing panel info
@@ -57,3 +58,5 @@ rows = ['Panel_id', 'Panel_version', 'Disease', 'Last_updated', 'Genes']
 Values = [Panel_id, Panel_version, Disease, Last_updated, gene_list]
 
 df = pd.DataFrame(Values, index =rows, columns=['Values'])
+
+print(df)
