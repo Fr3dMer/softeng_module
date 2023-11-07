@@ -1,0 +1,6 @@
+name: PannelAppDB
+channels:
+  - defaults
+dependencies:
+  - pip
+prefix: /home/freddie/miniconda3/envs/PannelAppDB
