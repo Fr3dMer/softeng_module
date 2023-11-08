@@ -31,7 +31,7 @@ class api_obj():
 
         self.value_checker(version=version,pannel_id=pannel_id)
 
-        url = "https://panelapp.genomicsengland.co.uk/api/v1/panels/3/"       
+        url = "https://panelapp.genomicsengland.co.uk/api/v1/panels/" + str(pannel_id) + "/"       
         payload = {'version':version} 
 
         return requests.get(url,params=payload)
@@ -46,6 +46,9 @@ class api_obj():
         if(type(pannel_id) != int):
             print("incorrect value type for version provided, please use a string or float")
             raise SystemError
+        
+    # Compare version and 
+    #def 
 
 
 
