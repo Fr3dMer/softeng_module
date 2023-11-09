@@ -13,8 +13,6 @@ class api_obj():
     def __init__(self,args):
         self.args = args
 
-        url = "https://panelapp.genomicsengland.co.uk/api/v1/panels/3/?version=4.0"
-
     # Call endpoint to get most up to date version of signed off pannel 
     def get_all_pannels(self,pannel_id):
 
@@ -36,13 +34,13 @@ class api_obj():
         return requests.get(url,params=payload)
 
     # Support func to ensure variables in correct format 
-    def value_checker(self,pannel_id,version=""):
+    def value_checker(self,pannel_id="",version=""):
 
-        if(type(version) == int):
-            raise SystemError("incorrect value type for version provided, please use a string or float")
+        if(type(version) == float or type(version) == str):
+            raise SystemError("incorrect value type for pannel provided, please use a string or float")
         
         if(type(pannel_id) != int):
-            raise SystemError("incorrect value type for version provided, please use a string or float")
+            raise SystemError("incorrect value type for version provided, please use a int")
     
     def version_check(self,query_version,true_version):
 
@@ -77,7 +75,9 @@ if (__name__ == "__main__"):
 
     api = api_obj("arg")
 
-    result = api.get_single_detailed_pannel(3,4.0)
+    print(api.args)
+
+    result = api.get_single_detailed_pannel(pannel_id=3,version=4.0)
     result2 = api.get_all_pannels(3)
 
     print(result.json(),"\n\n")
