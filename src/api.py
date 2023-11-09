@@ -6,7 +6,6 @@ Author        : Freddie Mercer
 
 import requests
 
-
 # Object to make call to gel pannel app rest api
 class api_obj():
 
@@ -40,20 +39,42 @@ class api_obj():
     def value_checker(self,pannel_id,version=""):
 
         if(type(version) == int):
-            print("incorrect value type for version provided, please use a string or float")
-            raise SystemError
+            raise SystemError("incorrect value type for version provided, please use a string or float")
         
         if(type(pannel_id) != int):
-            print("incorrect value type for version provided, please use a string or float")
-            raise SystemError
+            raise SystemError("incorrect value type for version provided, please use a string or float")
+    
+    def version_check(self,query_version,true_version):
+
+        # Make sure versions are correct type 
+        if not (type(query_version) == float and type(true_version) == float):
+            raise SyntaxError("Verions are not floats, cannot compare versions")
+
+        # If versions are equal 
+        if(query_version == true_version):
+            return True
+
+        # 2.3 > 5 == True
+        # 
+        elif(query_version > true_version):
+            pass 
         
-    # Compare version and 
-    #def 
+        # 5 < 2.3 == True
+        elif(query_version < true_version):
+            pass
+
+
+
+
+
+        
+
 
 
 
 
 if (__name__ == "__main__"):
+
     api = api_obj("arg")
 
     result = api.get_single_detailed_pannel(3,4.0)

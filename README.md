@@ -14,7 +14,10 @@ conda activate PannelAppDB
 ```
 
 ## Tests
-```bahs
+```bash
 
 
 ```
+
+
+- Human readable cli setting 
