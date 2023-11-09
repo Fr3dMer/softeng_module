@@ -17,10 +17,9 @@ class api_obj():
 
         self.value_checker(pannel_id=pannel_id)
 
-        url = "https://panelapp.genomicsengland.co.uk/api/v1/panels/signedoff/"
-        payload = {'panel_id':pannel_id} 
+        url = "https://panelapp.genomicsengland.co.uk/api/v1/panels/signedoff/"+ str(pannel_id)
 
-        return requests.get(url,params=payload).json()
+        return requests.get(url).json()
 
     # Get detailed info on individual pannel
     def get_single_detailed_pannel(self,pannel_id,version=None):
@@ -63,13 +62,9 @@ class api_obj():
             return True
 
         # 2.3 > 5 == True
-        elif(query_version > true_version):
-            pass  
+        elif(query_version != true_version):
+            return False
         
-        # 5 < 2.3 == True
-        elif(query_version < true_version):
-            pass
-    
     # Check internet connection 
     def check_internet(self):
         url = 'http://google.com'

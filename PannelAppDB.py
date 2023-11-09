@@ -40,8 +40,11 @@ def main():
     # Make a call to API and get GMS version 
     gms_panel = api.get_gms_pannel(cli.args.panel_id)
     #gms_pannel_version = 4.3
-    gms_pannel_version = float(raw_data.get("version",None))
+    print(gms_panel)
+    gms_pannel_version = float(gms_panel.get("version",None))
     #parsing.get_version(gms_pannel)
+
+
 
     # Compare versions
     if(api.version_check(gms_pannel_version,query_version) == True):
