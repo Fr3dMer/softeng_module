@@ -55,7 +55,7 @@ class api_obj():
 
         # 2.3 > 5 == True
         elif(query_version > true_version):
-            pass    
+            pass  
         
         # 5 < 2.3 == True
         elif(query_version < true_version):
