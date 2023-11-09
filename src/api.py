@@ -3,7 +3,6 @@ File          : api.py
 About         : Object for interacting with pannelapp api 
 Author        : Freddie Mercer
 ****************************************************************************"""
-from urllib import request
 import requests
 
 # Object to make call to gel pannel app rest api
@@ -21,22 +20,32 @@ class api_obj():
         url = "https://panelapp.genomicsengland.co.uk/api/v1/panels/signedoff/"
         payload = {'panel_id':pannel_id} 
 
-        return requests.get(url,params=payload)
+        return requests.get(url,params=payload).json()
 
     # Get detailed info on individual pannel
-    def get_single_detailed_pannel(self,pannel_id,version):
+    def get_single_detailed_pannel(self,pannel_id,version=None):
+        
+        if(version==None):
+            url = "https://panelapp.genomicsengland.co.uk/api/v1/panels/" + str(pannel_id) 
+            return requests.get(url).json()
+
 
         self.value_checker(version=version,pannel_id=pannel_id)
 
         url = "https://panelapp.genomicsengland.co.uk/api/v1/panels/" + str(pannel_id) + "/"       
         payload = {'version':version} 
 
-        return requests.get(url,params=payload)
+        return requests.get(url,params=payload).json()
 
     # Support func to ensure variables in correct format 
     def value_checker(self,pannel_id="",version=""):
 
-        if(type(version) == float or type(version) == str):
+
+        if(type(version) == float):
+            pass 
+        elif(type(version) == str):
+            pass
+        else:
             raise SystemError("incorrect value type for pannel provided, please use a string or float")
         
         if(type(pannel_id) != int):
@@ -63,12 +72,14 @@ class api_obj():
     
     # Check internet connection 
     def check_internet(self):
-        try:
-            request.urlopen('http://216.58.192.142', timeout=1)
-            return True
-        except request.URLError as err: 
-            return False
+        url = 'http://google.com'
 
+        try:
+            response = requests.get(url, timeout=5)
+        except:
+            return False
+        else:
+            return True
 
 
 
@@ -80,13 +91,12 @@ if (__name__ == "__main__"):
 
     api = api_obj("arg")
 
-    print(api.args)
 
     result = api.get_single_detailed_pannel(pannel_id=3,version=4.0)
-    result2 = api.get_all_pannels(3)
+    result2 = api.get_gms_pannel(3)
 
-    print(result.json(),"\n\n")
-    print(result2.json())
+    print(result,"\n\n")
+    print(result2)
 
 
 
