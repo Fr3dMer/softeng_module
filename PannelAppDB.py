@@ -30,7 +30,8 @@ def main():
         # get panel_id from db  
         # For now parse json and get version 
         raw_data = api.get_single_detailed_pannel(cli.args.panel_id)
-        query_version = parser.parser_version(raw_data)
+        query_version = float(raw_data.get("version",None))
+        print(query_version)
         
     else:
         # No internet so get pannel_id from db and json data 
@@ -38,7 +39,8 @@ def main():
 
     # Make a call to API and get GMS version 
     gms_panel = api.get_gms_pannel(cli.args.panel_id)
-    gms_pannel_version = parsing.get_version(gms_pannel)
+    #gms_panel = 4.3
+    #gms_pannel_version = parsing.get_version(gms_pannel)
 
     # Compare versions
     if(api.version_check(gms_panel,query_version) == True):
