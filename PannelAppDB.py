@@ -16,8 +16,6 @@ def main():
 
     # CLI 
     cli = cli_module.cli_obj(sys.argv[1:])
-
-    #print(cli.args.panel_id)
     
     # Instantiate api obj
     api = api_module.api_obj("args")
@@ -31,7 +29,6 @@ def main():
         # For now parse json and get version 
         raw_data = api.get_single_detailed_pannel(cli.args.panel_id)
         query_version = float(raw_data.get("version",None))
-        #print(query_version)
         
     else:
         # No internet so get pannel_id from db and json data 
@@ -42,7 +39,6 @@ def main():
     #gms_pannel_version = 4.3
     print(gms_panel)
     gms_pannel_version = float(gms_panel.get("version",None))
-    #parsing.get_version(gms_pannel)
 
 
 
