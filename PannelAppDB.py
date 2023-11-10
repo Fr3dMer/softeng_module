@@ -15,56 +15,51 @@ import sys
 
 def main():
 
-    # CLI 
+    # Initiaslise CLI obj 
     cli = cli_module.cli_obj(sys.argv[1:])
     
     # Instantiate api obj and parser
     api = api_module.api_obj("args")
     parser = parser_obj.Parser("args")
    
-
-
     # Check internet connection 
     internet_status = api.check_internet()
 
     # Call pannel from db, returning version 
-    if(internet_status==True):
-        # get panel_id from db  
-        # For now parse json and get version 
-        raw_data = api.get_single_detailed_pannel(cli.args.panel_id)
-        query_version = float(parser.extract_version(raw_data))
-        
-    else:
-        # No internet so get pannel_id from db and json data 
+    if not(internet_status==True):
         raise SystemExit("Could not connect to internet")
+        
+
+    # Check what has been passed in, preferentialy start with panel_id for now
+    if(type(cli.args.panel_id) == int):
+        raw_data = api.get_single_detailed_pannel_id(cli.args.panel_id)
+
+    elif(type(cli.args.rcode) == str):
+        raw_data = api.get_single_detailed_pannel_rcode(cli.args.rcode)
 
     # Make a call to API and get GMS version 
-    gms_panel = api.get_gms_pannel(cli.args.panel_id)
+    query_version = float(parser.extract_version(raw_data))
+    query_id = int(parser.extract_panel_id(raw_data))
+    gms_panel = api.get_gms_pannel(query_id)
     gms_pannel_version = float(gms_panel.get("version",None))
 
-
-
     # Compare versions
-    if(api.version_check(gms_pannel_version,query_version) == True):
-        # If not changed, return version in db to variable 
-        # Run parser and return each feature from data 
-        pass
-    else:
+    if(api.version_check(gms_pannel_version,query_version) == False):
         # If GMS version has changed, get new version and push to db, return new version to variable
         # Call GMS pannel version 
-        raw_data = api.get_single_detailed_pannel(cli.args.panel_id,gms_pannel_version)
-        # Run parser and return each feature from data
+        raw_data = api.get_single_detailed_pannel_id(query_id,gms_pannel_version)
 
 
-    id = parser.extract_panel_id(raw_data)    
+    used_version = raw_data.get("version",None)
     disease = parser.extract_disease(raw_data)
     updated = parser.extract_last_updated(raw_data)
     genes = parser.extract_genes(raw_data)
 
-    print("Panel id : ",id,"\n")
-    print("Disease: ",disease,"\n")
-    print("Last updated: ",updated,"\n")
-    print("Genes in list: ",genes,"\n")
+    print("Panel id :          ",query_id)
+    print("Version :           ",used_version)
+    print("Disease:            ",disease[0])
+    print("Last updated:       ",updated)
+    print("Genes in list:      ",genes)
 
     
 

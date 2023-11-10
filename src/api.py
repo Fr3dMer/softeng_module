@@ -3,6 +3,7 @@ File          : api.py
 About         : Object for interacting with pannelapp api 
 Author        : Freddie Mercer
 ****************************************************************************"""
+
 import requests
 
 # Object to make call to gel pannel app rest api
@@ -21,13 +22,12 @@ class api_obj():
 
         return requests.get(url).json()
 
-    # Get detailed info on individual pannel
-    def get_single_detailed_pannel(self,pannel_id,version=None):
+    # Get detailed info on individual pannel via id
+    def get_single_detailed_pannel_id(self,pannel_id,version=None):
         
         if(version==None):
             url = "https://panelapp.genomicsengland.co.uk/api/v1/panels/" + str(pannel_id) 
             return requests.get(url).json()
-
 
         self.value_checker(version=version,pannel_id=pannel_id)
 
@@ -36,19 +36,28 @@ class api_obj():
 
         return requests.get(url,params=payload).json()
 
-    # Support func to ensure variables in correct format 
-    def value_checker(self,pannel_id="",version=""):
-
-
-        if(type(version) == float):
-            pass 
-        elif(type(version) == str):
-            pass
-        else:
-            raise SystemError("incorrect value type for pannel provided, please use a string or float")
+    # Get detailed info on individual pannel via rcode
+    def get_single_detailed_pannel_rcode(self,rcode,version=None):
         
-        if(type(pannel_id) != int):
-            raise SystemError("incorrect value type for version provided, please use a int")
+        self.value_checker(version=version,rcode=rcode)
+
+        url = "https://panelapp.genomicsengland.co.uk/api/v1/panels/" + str(rcode) 
+        return requests.get(url).json()
+
+
+
+    # Support func to ensure variables in correct format 
+    def value_checker(self,pannel_id=None,version=None,rcode=None):
+
+
+        if not(version == None or type(version) == float or type(version) == str):
+            raise SystemError("Internal error: incorrect value type for version used for api cal, please use a string or float")
+      
+        if not(pannel_id == None or type(pannel_id) == int):
+            raise SystemError("Internal error: incorrect value type for panel id used for api call, please use a int")
+        
+        if not(rcode == None or type(rcode) == str):
+            raise SystemError("Internal error: incorrect value type for rcode used for api call, please provide a str")
     
     def version_check(self,query_version,true_version):
         
