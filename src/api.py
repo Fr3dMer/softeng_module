@@ -6,14 +6,13 @@ Author        : Freddie Mercer
 
 import requests
 
-# Object to make call to gel pannel app rest api
+
 class api_obj():
 
-    # Constructor 
+
     def __init__(self,args):
         self.args = args
 
-    # Call endpoint to get most up to date version of signed off pannel 
     def get_gms_pannel(self,pannel_id):
 
         self.value_checker(pannel_id=pannel_id)
@@ -22,7 +21,6 @@ class api_obj():
 
         return requests.get(url).json()
 
-    # Get detailed info on individual pannel via id
     def get_single_detailed_pannel_id(self,pannel_id,version=None):
         
         if(version==None):
@@ -36,7 +34,6 @@ class api_obj():
 
         return requests.get(url,params=payload).json()
 
-    # Get detailed info on individual pannel via rcode
     def get_single_detailed_pannel_rcode(self,rcode,version=None):
         
         self.value_checker(version=version,rcode=rcode)
@@ -45,10 +42,7 @@ class api_obj():
         return requests.get(url).json()
 
 
-
-    # Support func to ensure variables in correct format 
     def value_checker(self,pannel_id=None,version=None,rcode=None):
-
 
         if not(version == None or type(version) == float or type(version) == str):
             raise SystemError("Internal error: incorrect value type for version used for api cal, please use a string or float")
@@ -60,21 +54,17 @@ class api_obj():
             raise SystemError("Internal error: incorrect value type for rcode used for api call, please provide a str")
     
     def version_check(self,query_version,true_version):
-        
-        # Make sure versions are correct type 
+
         if not (type(query_version) == float and type(true_version) == float):
             raise SyntaxError("Verions are not floats, cannot compare versions")
 
-        # If versions are equal 
         if(query_version == true_version):            
             
             return True
 
-        # 2.3 > 5 == True
         elif(query_version != true_version):
             return False
-        
-    # Check internet connection 
+
     def check_internet(self):
         url = 'http://google.com'
 
