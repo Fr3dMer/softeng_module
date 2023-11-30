@@ -1,3 +1,5 @@
+# A fully rendered markdown file (README.md) that describes the project
+
 # PannelAppDB
 
 ## Install 
@@ -21,3 +23,5 @@ conda activate PannelAppDB
 
 
 - Human readable cli setting 
+
+# read the docs link
