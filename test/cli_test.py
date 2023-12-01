@@ -1,37 +1,35 @@
 """***************************************************************************
-File          : api_test.py
-About         : Test API works as expected 
+File          : cli_test.py
+About         : Test cli is working as expected 
 Author        : Freddie Mercer
 Date modified : 2023-12-01
 ***************************************************************************"""
 
 import pytest
-import src.api as api_obj
+import src.cli as cli_obj
 
 #-----------------------------------------------------------------------------
 # Setup test enviro 
 #-----------------------------------------------------------------------------
-@pytest.fixture
-def api_setup():
-	yield api_obj.api_obj("args")
 
-
+normal_pan = ['-p','123']
+normal_rcode = ['-r','place']
+normal = normal_pan + normal_rcode + ['-H']
 
 
 class TestApi():
 
 #-----------------------------------------------------------------------------
-# 					     get_gms_pannel test 
-# 	Function: Funcs goal is getting GMS signed off pannel details. How do 
-#			    test an API that is regularily changing is returning the 
-#  				correct/expected data?
-# 	Tests: Normal request, non-existent pannel id, none type
+# 					     __init__ test 
+# 	Function: initialise cli and parse the raw args 
+# 	Tests: Need to make sure values parsed correctly, with correct error 
+# 			handlings
 #-----------------------------------------------------------------------------
-	def test_api1_get_gms_pannel(self,api_setup):
+	# Normal CLI
+	def test_cli1_init(self):
 		
-		# Normal
-		test_id = 1
-		#assert "" == api_setup.get_gms_pannel(test_id)
-		assert 1 == 1
-
-
+		cli = cli_obj.cli_obj(normal)
+		assert cli.args.human == True
+	
+	def test_cli2_init(self):
+		pass
