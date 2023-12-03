@@ -1,27 +1,23 @@
-CREATE TABLE `follows` (
-  `following_user_id` integer,
-  `followed_user_id` integer,
-  `created_at` timestamp
+CREATE TABLE `Patients` (
+  `Patient_id` integer PRIMARY KEY,
+  `Name` varchar(255),
+  `DOB` date
 );
 
-CREATE TABLE `users` (
-  `id` integer PRIMARY KEY,
-  `username` varchar(255),
-  `role` varchar(255),
-  `created_at` timestamp
+CREATE TABLE `Samples` (
+  `Sample_id` integer PRIMARY KEY,
+  `Patient_id` integer,
+  `Unique_panel_id` varchar(255),
+  `Date` date
 );
 
-CREATE TABLE `posts` (
-  `id` integer PRIMARY KEY,
-  `title` varchar(255),
-  `body` text COMMENT 'Content of the post',
-  `user_id` integer,
-  `status` varchar(255),
-  `created_at` timestamp
+CREATE TABLE `Panels` (
+  `Unique_panel_id` varchar(255) PRIMARY KEY,
+  `R_code` varchar(255),
+  `Version` integer,
+  `gene_info` text
 );
 
-ALTER TABLE `posts` ADD FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+ALTER TABLE `Samples` ADD FOREIGN KEY (`Sample_id`) REFERENCES `Patients` (`Patient_id`);
 
-ALTER TABLE `follows` ADD FOREIGN KEY (`following_user_id`) REFERENCES `users` (`id`);
-
-ALTER TABLE `follows` ADD FOREIGN KEY (`followed_user_id`) REFERENCES `users` (`id`);
+ALTER TABLE `Samples` ADD FOREIGN KEY (`Unique_panel_id`) REFERENCES `Panels` (`Unique_panel_id`);
