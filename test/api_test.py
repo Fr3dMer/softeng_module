@@ -85,3 +85,15 @@ class TestApi():
         assert api_setup.version_check(right_type,1.4) == False
         
 
+#-----------------------------------------------------------------------------
+#                   check_internet test 
+# 	Function: ensure there is an actual internet connection
+# 	Tests: Using a normla and garbled url, does it return correct bools
+#-----------------------------------------------------------------------------
+    def test_api3_check_internet(self,api_setup):
+
+        norm_url = 'http://google.com'
+        bad_url = '192.0.2.0/24'
+
+        assert api_setup.check_internet(norm_url) == True
+        assert api_setup.check_internet(bad_url) == False
