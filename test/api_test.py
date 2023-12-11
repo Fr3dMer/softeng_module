@@ -1,14 +1,14 @@
 """***************************************************************************
 File          : api_test.py
-About         : Test API wrapper/interface works as expected, no need to
-                    test actual API as otherwise this becomes an integration 
-                    test. Instead only checker will be tested, maybe worth 
-                    seperating from actual api calls?
+About         : Test API wrapper/interface works as expected, api calls
+                  intercepted through responses lib 
 Author        : Freddie Mercer
 Date modified : 2023-12-08
 ***************************************************************************"""
 
+import json
 import pytest
+import responses
 import src.api as api_obj
 
 #-----------------------------------------------------------------------------
@@ -18,6 +18,62 @@ import src.api as api_obj
 def api_setup():
     yield api_obj.api_obj("args")
 
+@pytest.fixture
+def normal_json():
+    f = open("test/JSON_test_data.json")
+    normal_json = json.load(f)
+    f.close
+    yield normal_json
+
+@pytest.fixture
+def gms_data_json():
+    f = open("test/signed_off_gms.json")
+    gms_data_json = json.load(f)
+    f.close
+    yield gms_data_json
+
+@pytest.fixture
+def gms_json():
+    f = open("test/JSON_test_data2.json")
+    gms_json = json.load(f)
+    f.close
+    yield gms_json
+
+# Setup responses to catch calls by requests
+@pytest.fixture
+def response(normal_json,gms_data_json,gms_json):
+
+    base = "https://panelapp.genomicsengland.co.uk/api/v1/panels/"
+
+    resp1 = responses.Response(
+            method = "GET",
+            url = base + "504",
+            json = normal_json,
+            status = 200,
+        )
+    resp2 = responses.Response(
+            method = "GET",
+            url = base + "504/?version=2.0",
+            json = gms_json,
+            status = 200,
+        )
+    resp3 = responses.Response(
+            method = "GET",
+            url = base + "signedoff/504",
+            json = gms_data_json,
+            status = 200,
+        )
+    resp4 = responses.Response(
+            method = "GET",
+            url = base + "R211",
+            json = normal_json,
+            status = 200,
+        )
+    responses.add(resp1)
+    responses.add(resp2)
+    responses.add(resp3)
+    responses.add(resp4)
+    
 
 class TestApi():
 
@@ -97,3 +153,55 @@ class TestApi():
 
         assert api_setup.check_internet(norm_url) == True
         assert api_setup.check_internet(bad_url) == False
+
+
+#-----------------------------------------------------------------------------
+#                   get_gms_pannel test 
+# 	Function: get most recently signed off GMS pannel
+# 	Tests: ensure URL correctly formated and called
+#-----------------------------------------------------------------------------
+    @responses.activate
+    def test_api4_get_gms_pannel(self,api_setup,gms_data_json,response):
+
+        id = 504
+
+        assert api_setup.get_gms_pannel(id) == gms_data_json
+
+
+#-----------------------------------------------------------------------------
+#                   get_single_detailed_pannel_id test 
+# 	Function: call API and return parsed JSON, can specify version 
+# 	Tests: Normal function with and withought version
+#-----------------------------------------------------------------------------
+    @responses.activate
+    def test_api5_get_single_detailed_pannel_id(self,
+                                                api_setup,
+                                                normal_json,
+                                                gms_json,
+                                                response):
+        
+        id = 504
+        ver = 2.0
+
+        # No version
+        assert api_setup.get_single_detailed_pannel_id(id) == normal_json
+
+        # With version
+        assert api_setup.get_single_detailed_pannel_id(id,ver) == gms_json
+
+
+#-----------------------------------------------------------------------------
+#                   get_single_detailed_pannel_rcode test 
+# 	Function: call api by rcode and return correct data  
+# 	Tests: Normal functioning
+#-----------------------------------------------------------------------------
+    @responses.activate
+    def test_api6_get_single_detailed_pannel_rcode(self,
+                                                   api_setup,
+                                                   normal_json,
+                                                   response):
+
+        rcode = "R211"
+
+        # No version
+        assert api_setup.get_single_detailed_pannel_rcode(rcode) == normal_json
