@@ -60,11 +60,15 @@ class Parser():
     #Extract genes on panel from json, including error handelling for jsons mimissing the 'genes', 'gene_data' or 'hgnc_symbol' key>
     def extract_genes(self,input_json):
         try:
-            gene_info = input_json['genes']
+            gene_info = data['genes']
             gene_list = []
             for x in gene_info:
-                genes = x.get('gene_data',{}).get('hgnc_id')
-                gene_list.append(genes)
+                #Given a key, the get() method returns paired value from dict (documentation found at https://docs.python.org/2/library/stdtypes.html in section 5.8)
+                hgnc_symbol = x.get('gene_data',{}).get('hgnc_symbol')
+                hgnc_id = x.get('gene_data',{}).get('hgnc_id')
+                GRch38_coord = x.get('gene_data',{}).get('ensembl_genes',{}).get('GRch38',{}).get('90',{}).get('location',{})
+                gene_dict = {'HGNC Symbol':hgnc_symbol, 'HGNC ID':hgnc_id, 'GRch38 location':GRch38_coord}
+                gene_list.append(gene_dict)
         except KeyError:
             print('KeyError:PanelApp output JSON doesn\' contain \'genes\' or \'hgnc_id\' key')
             gene_list = np.nan
