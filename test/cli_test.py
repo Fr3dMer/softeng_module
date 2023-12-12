@@ -37,6 +37,7 @@ class TestApi():
 		assert cli.args.rcode == normal_rcode[1]
 		assert cli.args.human == True
 	
+
 	# Neither value present returns  error 
 	def test_cli2_init(self):
 		
@@ -45,6 +46,7 @@ class TestApi():
 		
 		with pytest.raises(SystemExit):
 			cli_obj.cli_obj(no_rcode)
+
 
 	# Finally test Human bool flag 
 	def test_cli2_init(self):
