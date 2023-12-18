@@ -72,3 +72,4 @@ class Parser():
             print('KeyError:PanelApp output JSON doesn\' contain \'genes\' or \'location\' key')
             bed_str = np.nan
         return bed_str
+
