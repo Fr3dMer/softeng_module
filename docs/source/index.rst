@@ -1,5 +1,5 @@
-Welcome to #### documentation!
-#### (/lu'make/) is a #####?
+Welcome to PannelAppDB documentation!
+Pannel (/lu'make/) is a #####?
 
 Check out the :doc:`usage` section for further information, including how to :ref:`installation` the project.
 
@@ -10,6 +10,5 @@ This project is under active development.
 Contents
 .. toctree::
     README
-    Installation
-    User Guide
-
+    installation
+    usage
