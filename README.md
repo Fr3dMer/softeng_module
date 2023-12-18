@@ -22,6 +22,7 @@ conda activate PannelAppDB
 ```
 
 
-- Human readable cli setting 
 
-# read the docs link
+## Proposed structure of app
+![flow chart showing structure of app](docs/Flowchart.png)
+
