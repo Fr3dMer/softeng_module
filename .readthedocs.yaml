@@ -11,3 +11,8 @@ python:
 
 sphinx:
   configuration: docs/source/conf.py
+
+#Produce documents in PDF and Epub formats
+formats:
+  - pdf
+  - epub
