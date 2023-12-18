@@ -9,3 +9,7 @@ This project is under active development.
 
 Contents
 .. toctree::
+    README
+    Installation
+    User Guide
+
