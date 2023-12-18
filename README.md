@@ -1,3 +1,5 @@
+# A fully rendered markdown file (README.md) that describes the project
+
 # PannelAppDB
 
 ## Install 
@@ -20,5 +22,7 @@ conda activate PannelAppDB
 ```
 
 
+
 ## Proposed structure of app
 ![flow chart showing structure of app](docs/Flowchart.png)
+
