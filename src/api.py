@@ -2,6 +2,7 @@
 File          : api.py
 About         : Object for interacting with pannelapp api 
 Author        : Freddie Mercer
+Date modified : 2023-12-08
 ****************************************************************************"""
 
 import requests
@@ -65,9 +66,8 @@ class api_obj():
         elif(query_version != true_version):
             return False
 
-    def check_internet(self):
-        url = 'http://google.com'
-
+    def check_internet(self,url = 'http://google.com'):
+        
         try:
             response = requests.get(url, timeout=5)
         except:
