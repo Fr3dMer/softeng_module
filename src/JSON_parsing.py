@@ -61,7 +61,7 @@ class Parser():
 
     def generate_bed(self,input_json):
         try:
-            gene_info = data['genes']
+            gene_info = input_json['genes']
             location_list = []
             for x in gene_info:
                 location = 'chr'+x.get('gene_data',{}).get('ensembl_genes',{}).get('GRch38',{}).get('90',{}).get('location',{})
