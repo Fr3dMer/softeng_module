@@ -10,9 +10,6 @@ import src.JSON_parsing as parser_obj
 import sys
 
 
-
-
-
 def main():
 
     cli = cli_module.cli_obj(sys.argv[1:])

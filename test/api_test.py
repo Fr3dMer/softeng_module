@@ -3,7 +3,7 @@ File          : api_test.py
 About         : Test API wrapper/interface works as expected, api calls
                   intercepted through responses lib 
 Author        : Freddie Mercer
-Date modified : 2023-12-08
+Date modified : 2023-12-20
 ***************************************************************************"""
 
 import json
@@ -79,9 +79,9 @@ class TestApi():
 
 #-----------------------------------------------------------------------------
 #                   get_gms_pannel test 
-# 	Function: Funcs goal is to ensure values are correct type before being
+#  Function: Funcs goal is to ensure values are correct type before being
 #               used for api call
-# 	Tests: Test no params does not raise error, test correct formating of
+#  Tests: Test no params does not raise error, test correct formating of
 #           pannel_id,version and rcode data types
 #-----------------------------------------------------------------------------
     def test_api1_value_checker(self,api_setup):
@@ -122,8 +122,8 @@ class TestApi():
 
 #-----------------------------------------------------------------------------
 #                   version_check test 
-# 	Function: wants to compare versions of panels
-# 	Tests: Are the variables entered comparable and does comparison work
+#  Function: wants to compare versions of panels
+#  Tests: Are the variables entered comparable and does comparison work
 #-----------------------------------------------------------------------------
     def test_api2_version_check(self,api_setup):
 
@@ -143,8 +143,8 @@ class TestApi():
 
 #-----------------------------------------------------------------------------
 #                   check_internet test 
-# 	Function: ensure there is an actual internet connection
-# 	Tests: Using a normla and garbled url, does it return correct bools
+#  Function: ensure there is an actual internet connection
+#  Tests: Using a normla and garbled url, does it return correct bools
 #-----------------------------------------------------------------------------
     def test_api3_check_internet(self,api_setup):
 
@@ -157,8 +157,8 @@ class TestApi():
 
 #-----------------------------------------------------------------------------
 #                   get_gms_pannel test 
-# 	Function: get most recently signed off GMS pannel
-# 	Tests: ensure URL correctly formated and called
+#  Function: get most recently signed off GMS pannel
+#  Tests: ensure URL correctly formated and called
 #-----------------------------------------------------------------------------
     @responses.activate
     def test_api4_get_gms_pannel(self,api_setup,gms_data_json,response):
@@ -170,8 +170,8 @@ class TestApi():
 
 #-----------------------------------------------------------------------------
 #                   get_single_detailed_pannel_id test 
-# 	Function: call API and return parsed JSON, can specify version 
-# 	Tests: Normal function with and withought version
+#  Function: call API and return parsed JSON, can specify version 
+#  Tests: Normal function with and withought version
 #-----------------------------------------------------------------------------
     @responses.activate
     def test_api5_get_single_detailed_pannel_id(self,
@@ -192,8 +192,8 @@ class TestApi():
 
 #-----------------------------------------------------------------------------
 #                   get_single_detailed_pannel_rcode test 
-# 	Function: call api by rcode and return correct data  
-# 	Tests: Normal functioning
+#  Function: call api by rcode and return correct data  
+#  Tests: Normal functioning
 #-----------------------------------------------------------------------------
     @responses.activate
     def test_api6_get_single_detailed_pannel_rcode(self,
