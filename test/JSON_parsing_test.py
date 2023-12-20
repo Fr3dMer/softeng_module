@@ -2,7 +2,7 @@
 File          : JSON_parsing.py
 About         : Ensure JSON are parsed as expected 
 Author        : Freddie Mercer
-Date modified : 2023-12-01
+Date modified : 2023-12-20
 
 TODO: Need to capture logs once logging implemented
 ***************************************************************************"""
@@ -111,7 +111,7 @@ bed_str = "chr5 112707498 112846239\n" + \
 class TestJSON_parsing():
 
 #-----------------------------------------------------------------------------
-# 					     extract_panel_id test 
+#                         extract_panel_id test 
 # 	Function: extract pannel id from JSON
 # 	Tests: Can it deal with normal JSON and when its not present?
 #-----------------------------------------------------------------------------
@@ -125,7 +125,7 @@ class TestJSON_parsing():
 
 
 #-----------------------------------------------------------------------------
-# 					     extract_version test 
+#                     extract_version test 
 # 	Function: extract version from json
 # 	Tests: Can it deal with normal JSON and when its not present?
 #-----------------------------------------------------------------------------
@@ -139,7 +139,7 @@ class TestJSON_parsing():
 
 
 #-----------------------------------------------------------------------------
-# 					     extract_disease test 
+#                         extract_disease test 
 # 	Function: extract associated dieases with test
 # 	Tests: Can it deal with normal JSON and when its not present?
 #-----------------------------------------------------------------------------
@@ -183,7 +183,7 @@ class TestJSON_parsing():
 
 
 #-----------------------------------------------------------------------------
-#                        generate_bed test 
+#                   generate_bed test 
 #   Function: generate bed using infor from json
 #   Tests: Can it deal with key error, normal data 
 #-----------------------------------------------------------------------------
