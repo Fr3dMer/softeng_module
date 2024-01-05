@@ -3,5 +3,8 @@ channels:
   - defaults
 dependencies:
   - pip
+  - pytest
+  - coverage
   - requests
-prefix: /home/freddie/miniconda3/envs/PannelAppDB
+  - pandas
+  - responses
