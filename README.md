@@ -9,6 +9,15 @@ conda env create -n PannelAppDB --file environment.yml
 conda activate PannelAppDB
 ```
 
+## Building and running script inside container 
+```bash
+sudo docker build -t "test" . 
+sudo docker run --name=myapp -e PYTHONUNBUFFERED=1 -d test
+# to see stdout
+sudo docker logs myapp 
+```
+
+
 ## Running script 
 ```bash
 
