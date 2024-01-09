@@ -47,7 +47,7 @@ class TestApi():
 
 
     # Finally test Human bool flag 
-    def test_cli2_init(self):
+    def test_cli3_init(self):
 
         cli = cli_obj.cli_obj(normal[0:-1])
         assert cli.args.human == False
