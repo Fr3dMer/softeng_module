@@ -13,19 +13,20 @@ conda activate PannelAppDB
 ```bash
 sudo docker build -t "panel_app_db" .
 sudo docker logs -f $(sudo docker run -d panel_app_db <PARAMS HERE>)
+# example
+sudo docker logs -f $(sudo docker run -d panel_app_db -p 3)
 ```
 
 
-## Running script 
+## Running script localy 
 ```bash
-
-
+conda activate PannelAppDB
+python3 PannelAppDB.py -r R45
 ```
 
 ## Tests
 ```bash
-
-
+pytest test/
 ```
 
 
