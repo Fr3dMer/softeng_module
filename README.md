@@ -11,10 +11,8 @@ conda activate PannelAppDB
 
 ## Building and running script inside container 
 ```bash
-sudo docker build -t "test" . 
-sudo docker run --name=myapp -e PYTHONUNBUFFERED=1 -d test
-# to see stdout
-sudo docker logs myapp 
+sudo docker build -t "panel_app_db" .
+sudo docker logs -f $(sudo docker run -d panel_app_db <PARAMS HERE>)
 ```
 
 
