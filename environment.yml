@@ -2,9 +2,9 @@ name: PannelAppDB
 channels:
   - defaults
 dependencies:
-  - pip
-  - pytest
-  - coverage
-  - requests
-  - pandas
-  - responses
+  - pip == 23.3  
+  - requests == 2.31.0
+  - pandas == 2.1.1
+  - pytest == 7.4.3
+  - coverage == 7.3.2
+  - responses == 0.24.1
