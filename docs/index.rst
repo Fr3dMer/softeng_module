@@ -1,5 +1,5 @@
 Welcome to PannelAppDB documentation!
-Pannel (/lu'make/) is a #####?
+PannelAppDB is a #####?
 
 Check out the :doc:`usage` section for further information, including how to :ref:`installation` the project.
 
