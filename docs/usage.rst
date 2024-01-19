@@ -19,7 +19,7 @@ Retreiving Pannel info
 To retrieve a the gene regions covered by a pannel,
 you can use the ``pannelapp.?????()`` function:
 
-.. autofunction:: lumache.get_random_ingredients
+.. autofunction:: pannelapp.?????
 
 
 
