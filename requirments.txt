@@ -1,3 +1,0 @@
-# file that can be used to install a minimum basic set of Python modules / libraries using pip
-
-# The requirements.txt file has been either replaced by a pyproject.toml or integrated into a pyproject.toml
