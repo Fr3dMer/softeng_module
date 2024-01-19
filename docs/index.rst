@@ -1,9 +1,10 @@
+
 .. include:: ../README.rst
 
 Welcome to PannelAppDB documentation!
-PannelAppDB is a #####?
 ===================================
 
+**PannelAppDB**  is a Python library that ?????????????
 
 Check out the :doc:`usage` section for further information, including
 how to :ref:`installation` the project.
@@ -17,6 +18,5 @@ Contents
 
 .. toctree::
 
-   Home <self>
    usage
    api
