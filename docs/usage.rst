@@ -13,6 +13,9 @@ To use PannelAppDB, first install it using pip:
 
    (.venv) $ pip install PannelAppDB
 
+
+.. _usage:
+
 Retreiving Pannel info
 ----------------
 
