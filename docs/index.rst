@@ -1,4 +1,4 @@
-Welcome to Lumache's documentation!
+Welcome to PannelAppDB documentation!
 ===================================
 
 **PannelAppDB**  is a Python library that ?????????????
@@ -17,5 +17,8 @@ Contents
 
    usage
    api
+   database
+
+
 
 .. include:: ../README.rst
