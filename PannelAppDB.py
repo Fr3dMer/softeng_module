@@ -8,6 +8,7 @@ import sys
 import pandas as pd
 import src.api as api_module
 import src.cli as cli_module
+from datetime import datetime
 import src.JSON_parsing as parser_obj
 
 def main():
@@ -47,6 +48,17 @@ def main():
     genes = parser.extract_genes(raw_data)
 
     # Send parsed data to db
+    unique_panel_id = disease[0] + "-" + used_version
+
+    # Send patient data to db 
+    if(type(cli.args.patientID) == str):
+
+        today_date = datetime.now()
+
+        db.insert_patient_record(cli.args.patientID,
+                                 cli.args.sampleID,
+                                 unique_panel_id,
+                                 today_date)    
 
     # Print all parsed data
     print("Panel id :          ",query_id)
@@ -57,13 +69,9 @@ def main():
     # Create table 
     output = pd.DataFrame(data=genes)
 
-    print(output)
+    print(output.to_markdown())
 
     
-
-
-
-
 
 
 if (__name__ == "__main__"):

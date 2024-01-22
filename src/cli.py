@@ -28,3 +28,6 @@ class cli_obj():
         
         self.args = parser.parse_args(raw_args)
 
+
+
+# - Need to add error catching for if patient ID suplied withought sample ID and vice versa
