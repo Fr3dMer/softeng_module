@@ -57,7 +57,7 @@ class api_obj():
     def version_check(self,query_version,true_version):
 
         if not (type(query_version) == float and type(true_version) == float):
-            raise SyntaxError("Verions are not floats, cannot compare versions")
+            raise SyntaxError("Versions are not floats, cannot compare versions")
 
         if(query_version == true_version):            
             
