@@ -75,6 +75,24 @@ class api_obj():
         else:
             return True
 
+    # Extracts version from raw_data, calls api to ensure most recent GMS panel, 
+    # if not gets most recent GMS panel
+    def get_gms_versions(self,raw_data,parser):
+
+        # Make a call to API and get GMS version
+        query_version = float(parser.extract_version(raw_data))
+        query_id = int(parser.extract_panel_id(raw_data))
+        gms_panel = self.get_gms_pannel(query_id)
+        gms_pannel_version = float(gms_panel.get("version",None))
+
+        # Compare versions
+        if(self.version_check(gms_pannel_version,query_version) == False):
+            # If GMS version has changed, get new version and push to db, return 
+            # new version to variable
+            # Call GMS pannel version
+            return self.get_single_detailed_pannel_id(query_id,gms_pannel_version)
+        else:
+            return raw_data
 
 
 

@@ -9,27 +9,6 @@ import src.api as api_module
 import src.cli as cli_module
 import src.JSON_parsing as parser_obj
 
-
-# Extracts version from raw_data, calls api to ensure most recent GMS panel, 
-# if not gets most recent GMS panel
-def get_gms_versions(raw_data,parser,api):
-
-    # Make a call to API and get GMS version
-    query_version = float(parser.extract_version(raw_data))
-    query_id = int(parser.extract_panel_id(raw_data))
-    gms_panel = api.get_gms_pannel(query_id)
-    gms_pannel_version = float(gms_panel.get("version",None))
-
-    # Compare versions
-    if(api.version_check(gms_pannel_version,query_version) == False):
-        # If GMS version has changed, get new version and push to db, return 
-        # new version to variable
-        # Call GMS pannel version
-        return api.get_single_detailed_pannel_id(query_id,gms_pannel_version)
-    else:
-        return raw_data
-
-
 def main():
 
     # Initiaslise CLI obj
@@ -46,15 +25,15 @@ def main():
     if not(internet_status==True):
         raise SystemExit("Could not connect to internet")
     
-    # Otherwise using panel id, get most recent panel
+    # Otherwise using panel id, get most recent GMS panel
     elif(type(cli.args.panel_id) == int):
         raw_data = api.get_single_detailed_pannel_id(cli.args.panel_id)
-        raw_data = get_gms_versions(raw_data,parser,api)
+        raw_data = api.get_gms_versions(raw_data,parser,api)
 
-    # If no panel id, get most recent panel using R-code
+    # If no panel id, get most recent gms panel using R-code
     elif(type(cli.args.rcode) == str):
         raw_data = api.get_single_detailed_pannel_rcode(cli.args.rcode)
-        raw_data = get_gms_versions(raw_data,parser,api)
+        raw_data = api.get_gms_versions(raw_data,parser,api)
     
     else:
         raise SystemExit("Panel id or Rcode must be entered")
