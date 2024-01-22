@@ -5,6 +5,7 @@ Author        : Freddie Mercer
 ****************************************************************************"""
 
 import sys
+import pandas as pd
 import src.api as api_module
 import src.cli as cli_module
 import src.JSON_parsing as parser_obj
@@ -28,17 +29,18 @@ def main():
     # Otherwise using panel id, get most recent GMS panel
     elif(type(cli.args.panel_id) == int):
         raw_data = api.get_single_detailed_pannel_id(cli.args.panel_id)
-        raw_data = api.get_gms_versions(raw_data,parser,api)
+        raw_data = api.get_gms_versions(raw_data,parser)
 
     # If no panel id, get most recent gms panel using R-code
     elif(type(cli.args.rcode) == str):
         raw_data = api.get_single_detailed_pannel_rcode(cli.args.rcode)
-        raw_data = api.get_gms_versions(raw_data,parser,api)
+        raw_data = api.get_gms_versions(raw_data,parser)
     
     else:
         raise SystemExit("Panel id or Rcode must be entered")
 
     # Re parse all data again
+    query_id = int(parser.extract_panel_id(raw_data))
     used_version = raw_data.get("version",None)
     disease = parser.extract_disease(raw_data)
     updated = parser.extract_last_updated(raw_data)
@@ -51,7 +53,11 @@ def main():
     print("Version :           ",used_version)
     print("Disease:            ",disease[0])
     print("Last updated:       ",updated)
-    print("Genes in list:      ",genes)
+
+    # Create table 
+    output = pd.DataFrame(data=genes)
+
+    print(output)
 
     
 
