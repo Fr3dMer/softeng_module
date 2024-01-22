@@ -1,6 +1,3 @@
-
-.. include:: ../README.rst
-
 Welcome to PannelAppDB documentation!
 ===================================
 
@@ -21,3 +18,7 @@ Contents
    usage
    api
    database
+
+
+
+.. include:: ../README.rst
