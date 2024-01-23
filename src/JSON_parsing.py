@@ -84,7 +84,7 @@ class Parser():
             gene_list = np.nan
         return gene_list
 
-    
+
     def generate_bed(self,input_json):
         """Generate BED file text, including error handelling 
         for jsons mimissing the 'genes' or 'location' key
@@ -101,4 +101,3 @@ class Parser():
             print('KeyError:PanelApp output JSON doesn\'t contain \'genes\' or \'location\' key')
             bed_str = np.nan
         return bed_str
-
