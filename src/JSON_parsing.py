@@ -10,14 +10,13 @@ import pandas as pd
 import numpy as np
 
 class Parser():
-
-
+    """Class extracts required data from Pannel app api outputs and recombines into JSON"""
     def __init__(self,args):
         self.args = args
 
-    #Extract panel id from json, including error handelling for jsons missing the 'id' key
-    def extract_panel_id(self,input_json):
 
+    def extract_panel_id(self,input_json):
+        """Extract panel id from json, including error handelling for jsons missing the 'id' key"""
         try:
             panel_id = input_json['id']
         except KeyError:
@@ -25,8 +24,11 @@ class Parser():
             panel_id = np.nan
         return panel_id
 
-    #Extract panel version from json, including error handelling for jsons missing the 'version' key
+    
     def extract_version(self,input_json):
+        """Extract panel version from json, including 
+        error handelling for jsons missing the 'version' key
+        """
         try:
             panel_version = input_json['version']
         except KeyError:
@@ -34,8 +36,11 @@ class Parser():
             panel_version = np.nan
         return panel_version
 
-    #Extract Disease from json, including error handelling for jsons missing the 'relevant_disorders' key
+
     def extract_disease(self,input_json):
+        """Extract Disease from json, including error handelling for 
+        jsons missing the 'relevant_disorders' key
+        """
         try:
             disease = input_json['relevant_disorders']
         except KeyError:
@@ -43,8 +48,11 @@ class Parser():
             disease = np.nan
         return disease
 
-    #Extract Date Last Updated from json, including error handelling for jsons missing the 'version_created' key
+
     def extract_last_updated(self,input_json):
+        """Extract Date Last Updated from json, including 
+        error handelling for jsons missing the 'version_created' key
+        """
         try:
             last_updated = input_json['version_created']
             last_updated = last_updated[:last_updated.index("T")]
@@ -53,8 +61,12 @@ class Parser():
             last_updated = np.nan
         return last_updated
     
-    #Extract genes on panel from json, including error handelling for jsons mimissing the 'genes', 'gene_data' or 'hgnc_symbol' key
+
     def extract_genes(self,input_json):
+        """Extract genes on panel from json, including error 
+        handelling for jsons mimissing the 'genes', 'gene_data' 
+        or 'hgnc_symbol' key
+        """
         try:
             gene_info = input_json['genes']
             gene_list = []
@@ -70,8 +82,11 @@ class Parser():
             gene_list = np.nan
         return gene_list
 
-    #Generate BED file text, including error handelling for jsons mimissing the 'genes' or 'location' key
+    
     def generate_bed(self,input_json):
+        """Generate BED file text, including error handelling 
+        for jsons mimissing the 'genes' or 'location' key
+        """
         try:
             gene_info = input_json['genes']
             location_list = []
