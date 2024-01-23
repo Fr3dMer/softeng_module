@@ -25,7 +25,7 @@ class cli_obj():
         then parse.
         
         Keyword arguments:
-        raw_args (list): output of sys.argv[1:]
+        raw_args (list): takes output of sys.argv[1:]
         """
 
         # Construct parser
@@ -74,7 +74,7 @@ class cli_obj():
             error_msg = '--patientID and --sampleID must be given sampleID'
             self.parser.error(error_msg)
 
-        # Check dir supplied exists
+        # Check dirs supplied exists
         if (type(self.args.bed37) == str):
             
             if not (os.path.isdir(self.args.bed37)):
