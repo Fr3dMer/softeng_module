@@ -50,16 +50,14 @@ def main():
         raw_data = api.get_single_detailed_pannel_rcode(cli.args.rcode)
         raw_data = api.get_gms_versions(raw_data,parser)
     
-    else:
-        raise SystemExit("Panel id or Rcode must be entered")
-
-    # Check None has been returned, which is returned by 
-    # db retrieve_highest_version_json if panel not present in db 
-    if (raw_data == None):
-        raise SystemExit("No GMS panels present in database")
-
 
     if (cli.return_panel_info == True):
+
+        # Check if None has been returned, which is returned by 
+        # db retrieve_highest_version_json if panel not present in db 
+        if (raw_data == None):
+            raise SystemExit("No GMS panels present in database")
+
 
         # Re parse all data again
         query_id = int(parser.extract_panel_id(raw_data))

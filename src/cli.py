@@ -4,6 +4,7 @@ About         : cli_obj
 Author        : Freddie Mercer
 ****************************************************************************"""
 
+import os
 import argparse
 
 
@@ -14,8 +15,8 @@ class cli_obj():
     __init__(): Construct parser with appropriate arguments and 
                 then parse.
     check_args(): Error catching logic to prevent incompatable 
-                  combinations of arguments and generate general 
-                  vars used in logic in main.
+                  combinations of arguments, check bed file paths 
+                  and generate general vars used in logic in main.
     """
     
     def __init__(self,raw_args):
@@ -46,6 +47,14 @@ class cli_obj():
                             "--sampleID",
                             type=str,
                             help="SampleID to insert into db")
+        self.parser.add_argument("-b37",
+                            "--bed37",
+                            type=str,
+                            help="Location to save grch37 bed file")
+        self.parser.add_argument("-b38",
+                            "--bed38",
+                            type=str,
+                            help="Location to save grch38 bed file")
         
         # Parse and save inside this obj
         self.args = self.parser.parse_args(raw_args)
@@ -55,26 +64,41 @@ class cli_obj():
     def check_args(self):
 
         """Error catching logic to prevent incompatable 
-        combinations of arguments and generate general vars used 
-        in logic in main.
+        combinations of arguments, check bed file paths 
+        and generate general vars used in logic in main.
         """
 
         # Check sampleid and patientid supplied together 
         if len([x for x in (self.args.patientID,
                             self.args.sampleID) if x is not None]) == 1:
-            error_msg = '--patientID and --password must be given sampleID'
+            error_msg = '--patientID and --sampleID must be given sampleID'
             self.parser.error(error_msg)
+
+        # Check dir supplied exists
+        if (type(self.args.bed37) == str):
+            
+            if not (os.path.isdir(self.args.bed37)):
+                error_msg = 'The path you provided for bed37 ' \
+                            + 'does not exist'
+                self.parser.error(error_msg)
         
+        if (type(self.args.bed38) == str):
+            
+            if not (os.path.isdir(self.args.bed38)):
+                error_msg = 'The path you provided for bed38 ' \
+                            + 'does not exist'
+                self.parser.error(error_msg)
 
         # Check if any panel id entered
-        if (type(self.args.panel_id) == int or 
-            type(self.args.rcode == int)):
-            self.return_panel_info = True
-        else:
+        if (type(self.args.panel_id) == None or 
+            type(self.args.rcode == None)):
             self.return_panel_info = False
+        else:
+            self.return_panel_info = True
 
         # Check if any patient details enteres
         if (type(self.args.patientID) == str):
             self.patient_info = True
         else:
             self.patient_info = False
+
