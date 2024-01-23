@@ -1,15 +1,12 @@
-# Configuration file for the Sphinx documentation builder.
+"""Configuration file for the Sphinx documentation builder"""
 
-# -- Project information
-
+# Project information
 project = 'PannelAppDB'
 author = "Frederick Mercer, Abigail Haddon, Amy Grimwood"
-
 release = '0.1'
 version = '0.1.0'
 
-# -- General configuration
-
+# General configuration
 extensions = [
     'sphinx.ext.duration',
     'sphinx.ext.doctest',
@@ -26,9 +23,8 @@ intersphinx_disabled_domains = ['std']
 
 templates_path = ['_templates']
 
-# -- Options for HTML output
-
+# Specify sphinx theme for HTML output
 html_theme = 'sphinx_rtd_theme'
 
-# -- Options for EPUB output
+# Options for EPUB output
 epub_show_urls = 'footnote'
