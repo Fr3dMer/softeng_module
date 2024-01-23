@@ -11,10 +11,10 @@ conda activate PannelAppDB
 
 ## Building and running script inside container 
 ```bash
-sudo docker build -t "panel_app_db" .
-sudo docker logs -f $(sudo docker run -d panel_app_db <PARAMS HERE>)
+sudo docker build --rm -t "panel_app_db" .
+sudo docker run --rm panel_app_db <PARAMS HERE>
 # example
-sudo docker logs -f $(sudo docker run -d panel_app_db -p 3)
+sudo docker run --rm panel_app_db -p 3
 ```
 
 
