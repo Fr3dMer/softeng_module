@@ -24,7 +24,7 @@ class Parser():
             panel_id = np.nan
         return panel_id
 
-    
+
     def extract_version(self,input_json):
         """Extract panel version from json, including 
         error handelling for jsons missing the 'version' key
@@ -60,7 +60,7 @@ class Parser():
             print('KeyError:PanelApp output JSON doesn\' contain \'version_created\' key')
             last_updated = np.nan
         return last_updated
-    
+
 
     def extract_genes(self,input_json):
         """Extract genes on panel from json, including error 
@@ -71,7 +71,9 @@ class Parser():
             gene_info = input_json['genes']
             gene_list = []
             for x in gene_info:
-                #Given a key, the get() method returns paired value from dict (documentation found at https://docs.python.org/2/library/stdtypes.html in section 5.8)
+                # Given a key, the get() method returns paired value from 
+                # dict (documentation found at https://docs.python.org/2/library/stdtypes.html 
+                # in section 5.8)
                 hgnc_symbol = x.get('gene_data',{}).get('hgnc_symbol')
                 hgnc_id = x.get('gene_data',{}).get('hgnc_id')
                 GRch38_coord = x.get('gene_data',{}).get('ensembl_genes',{}).get('GRch38',{}).get('90',{}).get('location',{})
