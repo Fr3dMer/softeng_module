@@ -30,14 +30,14 @@ def main():
 
     # If no internet, get panel from db using rcode
     if(internet_status == False and type(cli.args.rcode) == str):
-        #raw_data = db.retrieve_highest_version_json(cli.args.rcode)
-        #print(int_disc)
+        raw_data = db.retrieve_highest_version_json(cli.args.rcode)
+        print(int_disc)
         pass
 
     # If no internet, get panel from db using ponel id
     elif(internet_status == False and type(cli.panel_id.rcode) == int):
-        #raw_data = db.retrieve_highest_version_json(cli.panel_id.rcode)
-        #print(int_disc)
+        raw_data = db.retrieve_highest_version_json(cli.panel_id.rcode)
+        print(int_disc)
         pass
 
     # Otherwise using panel id, get most recent GMS panel
@@ -71,13 +71,13 @@ def main():
 
         # Send parsed data to db
         unique_panel_id = r_code + "-" + used_version
-        #db.insert_panel_record(unique_panel_id, 
-        #                    r_code, 
-        #                    used_version, 
-        #                    genes, 
-        #                    raw_data, 
-        #                    BED_GrCH37, 
-        #                    BED_GrCH38)
+        db.insert_panel_record(unique_panel_id, 
+                            r_code, 
+                            used_version, 
+                            genes, 
+                            raw_data, 
+                            BED_GrCH37, 
+                            BED_GrCH38)
 
         # Print all parsed data
         print("Panel id :          ",query_id)
@@ -89,7 +89,7 @@ def main():
         print(output.to_markdown())
 
     # Send patient data to db 
-    if(False):
+    if(cli.patient_info == True):
 
         today_date = datetime.now()
         db.insert_patient_record(cli.args.patientID,
@@ -100,7 +100,7 @@ def main():
 
 
     # Get patient data if option present
-    if(False): #(type(cli.get_patient_data) == str):
+    if(type(cli.get_patient_data) == str):
         pat_data = db.retrieve_patient_and_panel_info(cli.get_patient_data)
         print(pat_data)
 
