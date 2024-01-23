@@ -11,6 +11,7 @@ import argparse
 class cli_obj():
 
     """ Obj for parsing and holding params passed in at start.
+    
     Organisation:
     __init__(): Construct parser with appropriate arguments and 
                 then parse.

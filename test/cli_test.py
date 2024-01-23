@@ -53,14 +53,14 @@ def test_cli_obj_invalid_bed_paths_38():
     with pytest.raises(SystemExit):
         cli = cli_obj.cli_obj(args)
 
-def test_cli_obj_no_panel_info():
+def test_cli_obj_no_sampleid():
     # Test case for not providing sampple_id wiht rcode
     args = ["-pid", "patientID"]
     
     with pytest.raises(SystemExit):
         cli = cli_obj.cli_obj(args)
 
-def test_cli_obj_no_patient_info():
+def test_cli_obj_no_patientid():
     # Test case for not providing patientID with sampleID
     args = ["-p", "1", "-r", "rcode", "-sid", "sampleID"]
     
