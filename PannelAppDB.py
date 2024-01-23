@@ -12,6 +12,7 @@ import src.database_3.0.py as db
 from datetime import datetime
 import src.JSON_parsing as parser_obj
 
+
 def main():
 
     # Initiaslise CLI obj
@@ -23,18 +24,17 @@ def main():
 
     # Check internet connection
     internet_status = api.check_internet()
-
-    int_disc = "#######################################################\n" + \
-               "Can't connect to internet, returning panel saved in db"    + \
-               "#######################################################\n"
+    int_disc = "#######################################################\n" \
+               + "Can't connect to internet, returning panel saved in db"  \
+               + "#######################################################\n"
 
     # If no internet, get panel from db using rcode
-    if (internet_status == False and type(cli.args.rcode) == str):
+    if(internet_status == False and type(cli.args.rcode) == str):
         raw_data = db.retrieve_highest_version_json(cli.args.rcode)
         print(int_disc)
     
     # If no internet, get panel from db using ponel id
-    elif (internet_status == False and type(cli.panel_id.rcode) == int):
+    elif(internet_status == False and type(cli.panel_id.rcode) == int):
         raw_data = db.retrieve_highest_version_json(cli.panel_id.rcode)
         print(int_disc)
 

@@ -36,9 +36,9 @@ class cli_obj():
 
         # Check if any patient details enteres
         if (type(self.args.patientID) == str or type(self.args.sampletID) == str):
-            self.return_patient_info == True
+            self.patient_info == True
         else:
-            self.return_patient_info == False
+            self.patient_info == False
 
 
 
