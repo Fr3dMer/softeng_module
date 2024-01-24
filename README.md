@@ -11,12 +11,6 @@ Functionality provided by PanelAppDB include:
 
 
 
-
-
-# A fully rendered markdown file (README.md) that describes the project
-
-# PannelAppDB
-
 ## Install 
 ```bash
 git clone https://github.com/Fr3dMer/softeng_module.git
