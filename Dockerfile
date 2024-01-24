@@ -1,5 +1,6 @@
 # syntax=docker/dockerfile:1
 
+
 # Get latest ubuntu LTS release
 FROM ubuntu:latest
 WORKDIR /app
