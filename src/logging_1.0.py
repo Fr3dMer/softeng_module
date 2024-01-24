@@ -20,7 +20,7 @@ class LoggerManager:
         log messages.
     """
 
-    def __init__(self, log_file_path='your_log_file.log'):
+    def __init__(self, log_file_path='PanelAppDB_log_file.log'):
         """
         Initializes the LoggerManager with the specified log file path.
 
@@ -34,16 +34,18 @@ class LoggerManager:
             self.logger.setLevel(logging.DEBUG)
 
             # Define a formatter with the desired log message format
-            formatter = logging.Formatter('%(asctime)s - %(name)s - %(module)s - '
-                                          '%(levelname)s - %(message)s - %(lineno)d',
-                                           datefmt='%y-%m-%d %H:%M:%S')
+            formatter = logging.Formatter('%(asctime)s - %(name)s - '
+                                          '%(module)s - %(levelname)s - '
+                                          '%(message)s - %(lineno)d',
+                                          datefmt='%y-%m-%d %H:%M:%S')
 
             # Create a rotating file handler for log files
-            file_handler = RotatingFileHandler(log_file_path, maxBytes=20480, backupCount=5)
+            file_handler = RotatingFileHandler(log_file_path, maxBytes=20480,
+                                               backupCount=5)
             file_handler.setFormatter(formatter)
             file_handler.setLevel(logging.DEBUG)
 
-            # Create a stream handler to output log messages to the console
+            # Create a stream handler to output log messages to console
             stream_handler = logging.StreamHandler()
             stream_handler.setFormatter(formatter)
             stream_handler.setLevel(logging.DEBUG)
@@ -61,9 +63,6 @@ class LoggerManager:
             sys.exit(1)
 
     def handle_exception(self, exc_type, exc_value, exc_traceback):
-        # Log uncaught exceptions with the logger
-        self.logger.error("Uncaught exception",
-                          exc_info=(exc_type, exc_value, exc_traceback))
         """
         Custom exception handler to log uncaught exceptions.
 
@@ -72,6 +71,11 @@ class LoggerManager:
             exc_value: Value associated with the exception.
             exc_traceback: Traceback information for the exception.
         """
+
+        # Log uncaught exceptions with the logger
+        self.logger.error("Uncaught exception",
+                          exc_info=(exc_type, exc_value, exc_traceback))
+
 
 # Example usage
 if __name__ == "__main__":
