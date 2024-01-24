@@ -28,3 +28,18 @@ class cli_obj():
         
         self.args = parser.parse_args(raw_args)
 
+        # Check if any panel id entered
+        if (type(self.args.panel_id) == int or type(self.args.rcode == int)):
+            self.return_panel_info = True
+        else:
+            self.return_panel_info = False
+
+        # Check if any patient details enteres
+        if (type(self.args.patientID) == str or type(self.args.sampletID) == str):
+            self.patient_info == True
+        else:
+            self.patient_info == False
+
+
+
+# - Need to add error catching for if patient ID suplied withought sample ID and vice versa
