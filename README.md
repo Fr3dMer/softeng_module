@@ -2,12 +2,21 @@
 
 # PannelAppDB
 
-## Install 
+## Install via conda
 ```bash
 git clone https://github.com/Fr3dMer/softeng_module.git
-conda env create -n PannelAppDB --file environment.yml
-conda activate PannelAppDB
+conda env create -n PanelAppDB --file environment.yml
+conda activate PanelAppDB
 ```
+
+## Install via pip
+- This section has been added to satisfy the rebric 
+```bash
+git clone https://github.com/Fr3dMer/softeng_module.git
+# Recommend creating venv or conda environment and activating it before carrying out this step
+pip install -r docs/requirements.txt
+```
+
 
 ## Building and running script inside container 
 ```bash
@@ -18,7 +27,7 @@ sudo docker run --rm panel_app_db -p 3
 ```
 
 
-## Running script localy 
+## Running script localy using conda environment above
 ```bash
 conda activate PannelAppDB
 python3 PannelAppDB.py -r R45
