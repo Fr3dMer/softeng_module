@@ -59,12 +59,19 @@ class Parser():
             gene_list = np.nan
         return gene_list
 
-    def generate_bed(self,input_json):
+    def generate_bed(self,input_json,ref_seq='grch38'):
         try:
             gene_info = input_json['genes']
             location_list = []
             for x in gene_info:
-                location = 'chr'+x.get('gene_data',{}).get('ensembl_genes',{}).get('GRch38',{}).get('90',{}).get('location',{})
+                if ref_seq = 'grch38':
+                    location = 'chr'+x.get('gene_data',{}).get('ensembl_genes',{}).get('GRch38',{}).get('90',{}).get('location',{})
+                elif ref_seq = 'grch37':
+                    location = 'chr'+x.get('gene_data',{}).get('ensembl_genes',{}).get('GRch37',{}).get('90',{}).get('location',{})
+                else:
+
+ADD EXCEPTION HANDLING HERE FOR IF REF SEQ ISNT RIGHT!!!!!!
+
                 location_list.append(location)
             location_str = "\n".join(location_list)
             bed_str = location_str.replace(':',' ').replace('-',' ')
