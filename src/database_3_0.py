@@ -189,7 +189,7 @@ if (__name__ == "__main__"):
         return data
 
     # path to JSON file
-    file_path = 'API_test.json'
+    file_path = 'test/JSON_test_data.json'
 
     # variable for storing json file
     json_file = load_json_file(file_path)
