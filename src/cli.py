@@ -92,7 +92,7 @@ class cli_obj():
                 self.parser.error(error_msg)
 
         # Check if any panel id entered
-        if (type(self.args.panel_id) == None or 
+        if (type(self.args.panel_id) == None and
             type(self.args.rcode == None)):
             self.return_panel_info = False
         else:
