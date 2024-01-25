@@ -6,10 +6,11 @@ Author  : Abi Haddon
 
 
 import sqlalchemy as db
-from sqlalchemy import MetaData, Table, Column, String, Float, LargeBinary, \
-    ForeignKey, or_, inspect, DateTime, Integer
+from sqlalchemy import (MetaData, Table, Column, String, Float, LargeBinary,
+                        ForeignKey, or_, inspect, DateTime, Integer)
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.sql import func
+from logging import logger
 import json
 import datetime
 
@@ -106,7 +107,7 @@ class PanelAppDB:
                 # The create_all method creates the tables in the database
                 self.metadata.create_all(self.engine)
         except SQLAlchemyError as e:
-            print(f"Error occurred when initialising database: {e}")
+            logger.exception(f"Error occurred when initialising database: {e}")
 
     def insert_patient_record(self, sample_id, patient_id,
                               unique_panel_id, date):
@@ -132,7 +133,7 @@ class PanelAppDB:
             ))
             return True
         except SQLAlchemyError as e:
-            print(f"Error occurred when inserting patient record: {e}")
+            logger.exception(f"Error occurred inserting patient record: {e}")
             return False
 
     def insert_panel_record_rcode(self, unique_panel_id, panelapp_panel_id,
@@ -178,8 +179,8 @@ class PanelAppDB:
                 print("Panel with the same r_code and version already exists")
                 return False
         except SQLAlchemyError as e:
-            print(f"Error occurred when inserting "
-                  f"panel record based on r_code: {e}")
+            logger.exception(f"Error occurred when inserting "
+                             f"panel record based on r_code: {e}")
             return False
 
     def insert_panel_record_panelid(self, unique_panel_id, panelapp_panel_id,
@@ -229,8 +230,8 @@ class PanelAppDB:
                 print("Panel with the same r_code and version already exists")
                 return False
         except SQLAlchemyError as e:
-            print(f"Error occurred when trying to insert panel record "
-                  f"when using panelapp_id : {e}")
+            logger.exception(f"Error occurred trying to insert panel record "
+                             f"when using panelapp_id : {e}")
             return False
 
     def retrieve_highest_version_json_panel_id(self, panelapp_panel_id):
@@ -268,8 +269,8 @@ class PanelAppDB:
             else:
                 return None
         except SQLAlchemyError as e:
-            print(f"Error occurred when trying to retrieve json "
-                  f"using panelapp_id: {e}")
+            logger.exception(f"Error occurred when trying to retrieve json "
+                             f"using panelapp_id: {e}")
             return None
 
     def retrieve_highest_version_json_rcode(self, r_code):
@@ -302,8 +303,8 @@ class PanelAppDB:
             else:
                 return None
         except SQLAlchemyError as e:
-            print(f"Error occurred when trying to retrieve"
-                  f" json using r_code: {e}")
+            logger.exception(f"Error occurred when trying to retrieve"
+                             f" json using r_code: {e}")
             return None
 
     def retrieve_patient_and_panel_info(self, input_id):
@@ -346,8 +347,8 @@ class PanelAppDB:
 
             return patient_details
         except SQLAlchemyError as e:
-            print(f"Error occurred when trying to "
-                  f"retrieve panel and patient info: {e}")
+            logger.exception(f"Error occurred when trying to "
+                             f"retrieve panel and patient info: {e}")
             return []
 
 
