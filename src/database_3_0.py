@@ -1,5 +1,5 @@
 """*******************************************************************
-File    : Database_3.0.py
+File    : Database_3_0.py
 About   : Generate and interact with PanelApp Database
 Author  : Abi Haddon
 *******************************************************************"""
