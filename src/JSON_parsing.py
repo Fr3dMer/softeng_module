@@ -51,7 +51,10 @@ class Parser():
                 #Given a key, the get() method returns paired value from dict (documentation found at https://docs.python.org/2/library/stdtypes.html in section 5.8)
                 hgnc_symbol = x.get('gene_data',{}).get('hgnc_symbol')
                 hgnc_id = x.get('gene_data',{}).get('hgnc_id')
-                GRch38_coord = x.get('gene_data',{}).get('ensembl_genes',{}).get('GRch38',{}).get('90',{}).get('location',{})
+                GRch38_coord = (x.get('gene_data',{}).get('ensembl_genes',{})
+                                .get('GRch38',{}).get('90',{}).get('location',{}))
+                GRch37_coord = (x.get('gene_data',{}).get('ensembl_genes',{})
+                                .get('GRch37',{}).get('82',{}).get('location',{}))
                 gene_dict = {'HGNC Symbol':hgnc_symbol, 'HGNC ID':hgnc_id, 'GRch38 location':GRch38_coord}
                 gene_list.append(gene_dict)
         except KeyError:
@@ -65,9 +68,11 @@ class Parser():
             location_list = []
             for x in gene_info:
                 if ref_seq = 'grch38':
-                    location = 'chr'+x.get('gene_data',{}).get('ensembl_genes',{}).get('GRch38',{}).get('90',{}).get('location',{})
+                    location = ('chr'+x.get('gene_data',{}).get('ensembl_genes',{})
+                                .get('GRch38',{}).get('90',{}).get('location',{})
                 if ref_seq = 'grch37':
-                    location = 'chr'+x.get('gene_data',{}).get('ensembl_genes',{}).get('GRch37',{}).get('90',{}).get('location',{})
+                    location = ('chr'+x.get('gene_data',{}).get('ensembl_genes',{})
+                                .get('GRch37',{}).get('82',{}).get('location',{}))
                 else: ValueError:
                     print('ValueError: ')
                 bed_str = np.nan
