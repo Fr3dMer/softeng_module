@@ -8,47 +8,66 @@ Date modified : 2023-12-20
 import pytest
 import src.cli as cli_obj
 
-#-----------------------------------------------------------------------------
-# Setup test enviro 
-#-----------------------------------------------------------------------------
 
-normal_pan = ['-p', '123']
-normal_rcode = ['-r', 'place']
-normal = normal_pan + normal_rcode + ['-H']
-no_panelid = ['-p'] + normal_rcode
-no_rcode = normal_pan + ['-r']
+def test_cli_obj_valid_args():
+    # Test case for making sure all args wo
+    args = ["-p", 
+            "1", 
+            "-r", 
+            "rcode", 
+            "-pid", 
+            "patientID", 
+            "-sid", 
+            "sampleID", 
+            "-b37", 
+            "test", 
+            "-b38", 
+            "test"]
+    cli = cli_obj.cli_obj(args)
 
-
-class TestApi():
-
-#-----------------------------------------------------------------------------
-#                    __init__ test 
-#  Function: initialise cli and parse the raw args 
-#  Tests: Need to make sure values parsed correctly, with correct error 
-#          handlings
-#-----------------------------------------------------------------------------
-    # Normal CLI
-    def test_cli1_init(self):
-        
-        cli = cli_obj.cli_obj(normal)
-        assert cli.args.panel_id == int(normal_pan[1])
-        assert cli.args.rcode == normal_rcode[1]
-        assert cli.args.human == True
-    
-
-    # Neither value present returns  error 
-    def test_cli2_init(self):
-        
-        with pytest.raises(SystemExit):
-            cli_obj.cli_obj(no_panelid)
-        
-        with pytest.raises(SystemExit):
-            cli_obj.cli_obj(no_rcode)
+    assert cli.args.panel_id == 1
+    assert cli.args.rcode == "rcode"
+    assert cli.args.patientID == "patientID"
+    assert cli.args.sampleID == "sampleID"
+    assert cli.args.bed37 == "test"
+    assert cli.args.bed38 == "test"
 
 
-    # Finally test Human bool flag 
-    def test_cli3_init(self):
+def test_cli_obj_invalid_combination_args():
+    # Test case for invalid combination of arguments
+    args = ["-p", "1", "-r", "rcode", "-sid", "sampleID"]
 
-        cli = cli_obj.cli_obj(normal[0:-1])
-        assert cli.args.human == False
+    with pytest.raises(SystemExit):
+        cli = cli_obj.cli_obj(args)
 
+
+def test_cli_obj_invalid_bed_paths_37():
+    # Test case for invalid bed37 file paths
+    args = ["-p", "1", "-r", "rcode", "-b37", "/invalid/path/bed37"]
+
+    with pytest.raises(SystemExit):
+        cli = cli_obj.cli_obj(args)
+
+
+def test_cli_obj_invalid_bed_paths_38():
+    # Test case for invalid bed37 file paths
+    args = ["-p", "1", "-r", "rcode", "-b38", "/invalid/path/bed38"]
+
+    with pytest.raises(SystemExit):
+        cli = cli_obj.cli_obj(args)
+
+
+def test_cli_obj_no_sampleid():
+    # Test case for not providing sampple_id wiht rcode
+    args = ["-pid", "patientID"]
+
+    with pytest.raises(SystemExit):
+        cli = cli_obj.cli_obj(args)
+
+
+def test_cli_obj_no_patientid():
+    # Test case for not providing patientID with sampleID
+    args = ["-p", "1", "-r", "rcode", "-sid", "sampleID"]
+
+    with pytest.raises(SystemExit):
+        cli = cli_obj.cli_obj(args)
