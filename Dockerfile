@@ -1,5 +1,4 @@
-# syntax=docker/dockerfile:1
-
+# Dockerfile for building containers for this app
 
 # Get latest ubuntu LTS release
 FROM ubuntu:latest
