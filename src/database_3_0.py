@@ -26,8 +26,6 @@ import datetime
 
 class PanelAppDB:
     def __init__(self, db_url='sqlite:///panel_app_db.db'):
-
-        # Check if database 
         self.engine = db.create_engine(db_url)
         self.connection = self.engine.connect()
         self.metadata = MetaData()
