@@ -4,7 +4,7 @@ build-backend = "flit_core.buildapi"
 
 [project]
 name = "PannelAppDB"
-authors = [{name = "Frederick Mercer", email = "frederick.mercer@postgrad.manchester.ac.uk"}{name = "Abigail Haddon", email = "abigail.haddon@postgrad.manchester.ac.uk"}{name = "Amy Grimwood", email = "amy.grimwood@postgrad.manchester.ac.uk"}]
+authors = [{name = "Frederick Mercer", email = "frederick.mercer@postgrad.manchester.ac.uk"},{name = "Abigail Haddon", email = "abigail.haddon@postgrad.manchester.ac.uk"},{name = "Amy Grimwood", email = "amy.grimwood@postgrad.manchester.ac.uk"}]
 dynamic = ["version", "description"]
 dependencies = ["numpy==1.26.3",
                 "pandas==2.2.0",
@@ -13,3 +13,4 @@ dependencies = ["numpy==1.26.3",
                 "responses==0.24.1",
                 "SQLAlchemy==2.0.25",
                 "coverage==7.2.2"]
+
