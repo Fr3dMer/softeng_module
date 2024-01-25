@@ -10,6 +10,7 @@ import src.cli as cli_obj
 
 
 def test_cli_obj_valid_args():
+    # Test case for making sure all args wo
     args = ["-p", 
             "1", 
             "-r", 
@@ -35,35 +36,38 @@ def test_cli_obj_valid_args():
 def test_cli_obj_invalid_combination_args():
     # Test case for invalid combination of arguments
     args = ["-p", "1", "-r", "rcode", "-sid", "sampleID"]
-    
+
     with pytest.raises(SystemExit):
         cli = cli_obj.cli_obj(args)
+
 
 def test_cli_obj_invalid_bed_paths_37():
     # Test case for invalid bed37 file paths
     args = ["-p", "1", "-r", "rcode", "-b37", "/invalid/path/bed37"]
-    
+
     with pytest.raises(SystemExit):
         cli = cli_obj.cli_obj(args)
+
 
 def test_cli_obj_invalid_bed_paths_38():
     # Test case for invalid bed37 file paths
     args = ["-p", "1", "-r", "rcode", "-b38", "/invalid/path/bed38"]
-    
+
     with pytest.raises(SystemExit):
         cli = cli_obj.cli_obj(args)
+
 
 def test_cli_obj_no_sampleid():
     # Test case for not providing sampple_id wiht rcode
     args = ["-pid", "patientID"]
-    
+
     with pytest.raises(SystemExit):
         cli = cli_obj.cli_obj(args)
+
 
 def test_cli_obj_no_patientid():
     # Test case for not providing patientID with sampleID
     args = ["-p", "1", "-r", "rcode", "-sid", "sampleID"]
-    
+
     with pytest.raises(SystemExit):
         cli = cli_obj.cli_obj(args)
-

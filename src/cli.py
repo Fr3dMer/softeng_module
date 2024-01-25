@@ -11,22 +11,22 @@ import argparse
 class cli_obj():
 
     """ Obj for parsing and holding params passed in at start.
-    
+
     Organisation:
-    __init__(): Construct parser with appropriate arguments and 
+    __init__(): Construct parser with appropriate arguments and
                 then parse.
-    check_args(): Error catching logic to prevent incompatable 
-                  combinations of arguments, check bed file paths 
+    check_args(): Error catching logic to prevent incompatable
+                  combinations of arguments, check bed file paths
                   and generate general vars used in logic in main.
     """
     
-    def __init__(self,raw_args):
+    def __init__(self, raw_args):
 
         """Construct parser with appropriate arguments and 
         then parse.
         
         Keyword arguments:
-        raw_args (list): takes output of sys.argv[1:]
+            raw_args (list): takes output of sys.argv[1:]
         """
 
         # Construct parser
@@ -75,14 +75,15 @@ class cli_obj():
             error_msg = '--patientID and --sampleID must be given sampleID'
             self.parser.error(error_msg)
 
-        # Check dirs supplied exists
+        # Check save location for bed37 exists
         if (type(self.args.bed37) == str):
-            
+
             if not (os.path.isdir(self.args.bed37)):
                 error_msg = 'The path you provided for bed37 ' \
                             + 'does not exist'
                 self.parser.error(error_msg)
-        
+
+        # Check save location for bed38 exists
         if (type(self.args.bed38) == str):
             
             if not (os.path.isdir(self.args.bed38)):
@@ -102,4 +103,3 @@ class cli_obj():
             self.patient_info = True
         else:
             self.patient_info = False
-
