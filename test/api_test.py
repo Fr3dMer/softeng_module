@@ -10,13 +10,14 @@ import json
 import pytest
 import responses
 import src.api as api_obj
+import src.logging_1_0 as log_obj
 
 #-----------------------------------------------------------------------------
 # Setup test enviro 
 #-----------------------------------------------------------------------------
 @pytest.fixture
 def api_setup():
-    yield api_obj.api_obj("args")
+    yield api_obj.api_obj(log_obj.LoggerManager())
 
 @pytest.fixture
 def normal_json():
@@ -91,15 +92,15 @@ class TestApi():
 
         # Normal panel id 
         p_id = 123
-        assert api_setup.value_checker(pannel_id = p_id) == None
+        assert api_setup.value_checker(panel_id = p_id) == None
         
         # Incorrect panel id's
         str_p_id = '123'
         float_p_id = 1.23
-        with pytest.raises(SystemError):
-            assert api_setup.value_checker(pannel_id = str_p_id)
-        with pytest.raises(SystemError):
-            assert api_setup.value_checker(pannel_id = float_p_id)
+        with pytest.raises(ValueError):
+            assert api_setup.value_checker(panel_id = str_p_id)
+        with pytest.raises(ValueError):
+            assert api_setup.value_checker(panel_id = float_p_id)
 
         # Normal version (can be str or float) 
         str_ver = '1.2'
@@ -108,7 +109,7 @@ class TestApi():
         assert api_setup.value_checker(version = float_ver) == None
 
         # Incorrect version type
-        with pytest.raises(SystemError):
+        with pytest.raises(ValueError):
             assert api_setup.value_checker(version = p_id)
 
         # Normal rcode 
@@ -116,7 +117,7 @@ class TestApi():
         assert api_setup.value_checker(rcode = str_rcode) == None
 
         # Incorrect rcode type
-        with pytest.raises(SystemError):
+        with pytest.raises(ValueError):
             assert api_setup.value_checker(rcode = p_id)
 
 
