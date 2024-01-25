@@ -66,17 +66,16 @@ class Parser():
             for x in gene_info:
                 if ref_seq = 'grch38':
                     location = 'chr'+x.get('gene_data',{}).get('ensembl_genes',{}).get('GRch38',{}).get('90',{}).get('location',{})
-                elif ref_seq = 'grch37':
+                if ref_seq = 'grch37':
                     location = 'chr'+x.get('gene_data',{}).get('ensembl_genes',{}).get('GRch37',{}).get('90',{}).get('location',{})
-                else:
-
-ADD EXCEPTION HANDLING HERE FOR IF REF SEQ ISNT RIGHT!!!!!!
-
+                else: ValueError:
+                    print('ValueError: ')
+                bed_str = np.nan
                 location_list.append(location)
             location_str = "\n".join(location_list)
             bed_str = location_str.replace(':',' ').replace('-',' ')
         except KeyError:
-            print('KeyError:PanelApp output JSON doesn\' contain \'genes\' or \'location\' key')
+            print('KeyError:PanelApp output JSON doesn\'t contain \'genes\' or \'location\' key')
             bed_str = np.nan
         return bed_str
 
