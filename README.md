@@ -29,7 +29,7 @@ python PanelAppDB.py -r R45 -g 123 -pid 123 -sid 456 -f'db/'
 sudo docker build --rm -t "panel_app_db" .
 sudo docker run --rm panel_app_db <PARAMS HERE>
 # example
-sudo docker run --rm panel_app_db -p 3
+sudo docker run --rm panel_app_db -p 3 -g 123 -pid 123 -sid 456 -d 
 ```
 
 ## Running script localy using conda environment above in debug mode

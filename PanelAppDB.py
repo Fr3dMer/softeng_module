@@ -4,16 +4,15 @@ About         : Hold main logical flow for app
 Author        : Freddie Mercer
 ****************************************************************************"""
 
-
+import sys
 import json
 import pandas as pd
 import src.api as api_module
 import src.cli as cli_module
-import src.JSON_parsing as parser_obj
 import src.logging as log_obj
-import sys
-import src.database_3_0 as db_obj
 from datetime import datetime
+import src.database_3_0 as db_obj
+import src.JSON_parsing as parser_obj
 
 
 def main():
@@ -33,8 +32,10 @@ def main():
     # See if db url has been added 
     if(type(cli.args.fdb) == str):
         db_url = 'sqlite:///' + cli.args.fdb + 'panel_app_db.db'
+        db_folder = cli.args.fdb
     else:
         db_url = 'sqlite:///panel_app_db.db'
+        db_folder = ""
     log.logger.debug("Connecting to DB")
     db = db_obj.PanelAppDB(db_url)
 
@@ -81,31 +82,39 @@ def main():
         r_code = parser.extract_disease(raw_data)[0]
         updated = parser.extract_last_updated(raw_data)
         genes = parser.extract_genes(raw_data)
-        #BED_GrCH37 = parser.generate_bed(raw_data,ref_seq='grch38')
-        #BED_GrCH38 = parser.generate_bed(raw_data,ref_seq='grch38')
+        BED_GrCH37 = parser.generate_bed(raw_data,'grch38')
+        BED_GrCH38 = parser.generate_bed(raw_data,'grch37')
+        unique_panel_id = r_code + "-" + used_version + "-" + str(query_id)
+
+        log.logger.debug("Generating bed files")
 
         # Save beds
-        #if(type(cli.args.bed37) == str):
-        #    bed37_name = cli.args.bed37
-        #else:
-        #    bed37_name = unique_panel_id + "bed37.bed"
+        if(type(cli.args.bed37) == str):
+            bed37_name = cli.args.bed37
+        else:
+            bed37_name = db_folder + unique_panel_id + "-bed37.bed"
+        
+        if(type(cli.args.bed38) == str):
+            bed38_name = cli.args.bed38
+        else:
+            bed38_name = db_folder + unique_panel_id + "-bed38.bed"
 
-        #with open('Failed.py', 'w') as file:
-        #    file.write('whatever')
+        with open(bed37_name, 'w') as file:
+            file.write(BED_GrCH37)
 
-
-
+        with open(bed38_name, 'w') as file:
+            file.write(BED_GrCH38)
+        
         # Send parsed data to db
         log.logger.debug("Inserting GMS panel data into db")
-        unique_panel_id = r_code + "-" + used_version + "-" + str(query_id)
         db.insert_panel_record_panelid(unique_panel_id, 
                             query_id,
                             r_code, 
                             used_version, 
                             str(genes),
                             json.dumps(raw_data, indent=2).encode('utf-8'),
-                            b'BED_GrCH37', 
-                            b'BED_GrCH38')
+                            BED_GrCH37, 
+                            BED_GrCH38)
         db.connection.commit()
         
         log.logger.debug("Printing panel details")

@@ -74,7 +74,7 @@ class Parser():
                     location = ('chr'+x.get('gene_data',{}).get('ensembl_genes',{})
                                 .get('GRch37',{}).get('82',{}).get('location',{}))
                 else: 
-                    print('ValueError: ')
+                    pass
                 bed_str = np.nan
                 location_list.append(location)
             location_str = "\n".join(location_list)
