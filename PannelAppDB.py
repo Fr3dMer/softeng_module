@@ -4,9 +4,7 @@ About         : Hold main logical flow for app
 Author        : Freddie Mercer
 ****************************************************************************"""
 
-
-
-
+import json
 import pandas as pd
 import src.api as api_module
 import src.cli as cli_module
@@ -30,7 +28,11 @@ def main():
     # Instantiate api obj, parser and DB
     api = api_module.api_obj(log)
     parser = parser_obj.Parser("args")
-    db_url = 'sqlite:///fam_test_panel_app_db.db'
+    # See if db url has been added 
+    if(type(cli.args.fdb) == str):
+        db_url = 'sqlite:///' + cli.args.fdb + 'panel_app_db.db'
+    else:
+        db_url = 'sqlite:///panel_app_db.db'
     log.logger.debug("Connecting to DB")
     db = db_obj.PanelAppDB(db_url)
 
@@ -77,9 +79,19 @@ def main():
         r_code = parser.extract_disease(raw_data)[0]
         updated = parser.extract_last_updated(raw_data)
         genes = parser.extract_genes(raw_data)
-        BED_GrCH37 = parser.generate_bed(raw_data)
-        ############## TODO: MAKE SURE GRCH38 BEING CREATED, THIS IS PLACE HOLDER!!!! #####################
-        BED_GrCH38 = parser.generate_bed(raw_data)
+        #BED_GrCH37 = parser.generate_bed(raw_data,ref_seq='grch38')
+        #BED_GrCH38 = parser.generate_bed(raw_data,ref_seq='grch38')
+
+        # Save beds
+        #if(type(cli.args.bed37) == str):
+        #    bed37_name = cli.args.bed37
+        #else:
+        #    bed37_name = unique_panel_id + "bed37.bed"
+
+        #with open('Failed.py', 'w') as file:
+        #    file.write('whatever')
+
+
 
         # Send parsed data to db
         log.logger.debug("Inserting GMS panel data into db")
@@ -89,9 +101,9 @@ def main():
                             r_code, 
                             used_version, 
                             str(genes), 
-                            b'raw_data', 
-                            BED_GrCH37, 
-                            BED_GrCH38)
+                            json.dumps(raw_data, indent=2).encode('utf-8'), 
+                            b'BED_GrCH37', 
+                            b'BED_GrCH38')
         db.connection.commit()
         
         log.logger.debug("Printing panel details")
@@ -122,7 +134,7 @@ def main():
         pat_data = db.retrieve_patient_and_panel_info(cli.args.get_patient_data)
         for item in pat_data:
             pat_list = [item[0],item[1],item[2],item[3],item[4],item[5]]
-            print(pat_list)
+            print("Returned patient records:",pat_list)
 
     # Close db connection
     db.connection.close()

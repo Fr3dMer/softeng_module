@@ -52,6 +52,10 @@ class cli_obj():
                             "--get_patient_data",
                             type=str,
                             help="Patient identifier to search for")
+        self.parser.add_argument("-f",
+                            "--fdb",
+                            type=str,
+                            help="DB location")
         self.parser.add_argument("-b37",
                             "--bed37",
                             type=str,
