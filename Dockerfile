@@ -1,11 +1,16 @@
-# syntax=docker/dockerfile:1
+# Dockerfile for building containers for this app
 
-FROM continuumio/miniconda3
+# Get latest ubuntu LTS release
+FROM ubuntu:latest
 WORKDIR /app
 COPY . .
 
-RUN conda env create --name pannelappdb --file environment.yml
+# Update package index and instal pip
+RUN apt-get update && apt-get install -y \
+    python3-pip
 
-ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "pannelappdb","python3","PannelAppDB.py"]
+# Install requirements found in requirements.txt using pip
+RUN pip install -r docs/requirements.txt
 
- 
+# Entry to script
+ENTRYPOINT ["python3","-W ignore::DeprecationWarning","PanelAppDB.py"]

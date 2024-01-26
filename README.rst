@@ -2,7 +2,6 @@
 
 - For help please use `-h` command
 
-
 ## Install via conda
 ```bash
 git clone https://github.com/Fr3dMer/softeng_module.git
