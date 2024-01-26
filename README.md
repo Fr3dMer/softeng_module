@@ -27,11 +27,17 @@ sudo docker run --rm panel_app_db -p 3
 ```
 
 
-## Running script localy using conda environment above
+## Running script localy using conda environment above in debug mode
 ```bash
 conda activate PannelAppDB
-python3 PannelAppDB.py -r R45
+python PannelAppDB.py -r R45 -g 123 -pid 123 -sid 456 -d
 ```
+## Running script localy using conda environment above in normal mode
+```bash
+conda activate PannelAppDB
+python PannelAppDB.py -r R45 -g 123 -pid 123 -sid 456
+```
+
 
 ## Tests
 ```bash

@@ -48,6 +48,10 @@ class cli_obj():
                             "--sampleID",
                             type=str,
                             help="SampleID to insert into db")
+        self.parser.add_argument("-g",
+                            "--get_patient_data",
+                            type=str,
+                            help="Patient identifier to search for")
         self.parser.add_argument("-b37",
                             "--bed37",
                             type=str,
@@ -56,6 +60,11 @@ class cli_obj():
                             "--bed38",
                             type=str,
                             help="Location to save grch38 bed file")
+        self.parser.add_argument("-d",
+                            "--debug_mode",
+                            action="store_true",
+                            help="Start script in debug mode")
+
         
         # Parse and save inside this obj
         self.args = self.parser.parse_args(raw_args)

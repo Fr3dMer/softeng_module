@@ -11,21 +11,28 @@ import pandas as pd
 import src.api as api_module
 import src.cli as cli_module
 import src.JSON_parsing as parser_obj
-import src.logging_1_0 as log_obj
+import src.logging as log_obj
 import sys
-#import src.database_3_0.py as db
+import src.database_3_0 as db_obj
 from datetime import datetime
 
 def main():
-    """"""
-
+    """Main function for script, tying together logic and objects 
+    in one place"""
+    
     # Initiaslise CLI obj
     cli = cli_module.cli_obj(sys.argv[1:])
+
+    # Init logger
+    log = log_obj.LoggerManager(debug_mode=cli.args.debug_mode)
+    log.logger.debug("Initialising objects")
     
-    # Instantiate logger, api obj, parser and DB
-    log = log_obj.LoggerManager()
+    # Instantiate api obj, parser and DB
     api = api_module.api_obj(log)
     parser = parser_obj.Parser("args")
+    db_url = 'sqlite:///fam_test_panel_app_db.db'
+    log.logger.debug("Connecting to DB")
+    db = db_obj.PanelAppDB(db_url)
 
     # Check internet connection
     internet_status = api.check_internet()
@@ -35,12 +42,12 @@ def main():
 
     # If no internet, get panel from db using rcode
     if(internet_status == False and type(cli.args.rcode) == str):
-        #raw_data = db.retrieve_highest_version_json(cli.args.rcode)
+        raw_data = db.retrieve_highest_version_json(cli.args.rcode)
         log.logger.warning(int_disc)
     
-    # If no internet, get panel from db using ponel id
+    # If no internet, get panel from db using panel id
     elif(internet_status == False and type(cli.panel_id.rcode) == int):
-        #raw_data = db.retrieve_highest_version_json(cli.panel_id.rcode)
+        raw_data = db.retrieve_highest_version_json(cli.panel_id.rcode)
         log.logger.warning(int_disc)
 
     # Otherwise using panel id, get most recent GMS panel
@@ -62,6 +69,7 @@ def main():
 
     #print(cli.return_panel_info)
     if (cli.return_panel_info == True):
+        log.logger.debug("Parsing data")
 
         # Re parse all data again
         query_id = int(parser.extract_panel_id(raw_data))
@@ -74,15 +82,19 @@ def main():
         BED_GrCH38 = parser.generate_bed(raw_data)
 
         # Send parsed data to db
-        unique_panel_id = r_code + "-" + used_version
-        #db.insert_panel_record(unique_panel_id, 
-        #                    r_code, 
-        #                    used_version, 
-         #                   genes, 
-          #                  raw_data, 
-           #                 BED_GrCH37, 
-            #                BED_GrCH38)
-
+        log.logger.debug("Inserting GMS panel data into db")
+        unique_panel_id = r_code + "-" + used_version + "-" + str(query_id)
+        db.insert_panel_record_panelid(unique_panel_id, 
+                            query_id,
+                            r_code, 
+                            used_version, 
+                            str(genes), 
+                            b'raw_data', 
+                            BED_GrCH37, 
+                            BED_GrCH38)
+        db.connection.commit()
+        
+        log.logger.debug("Printing panel details")
         # Print all parsed data
         print("Panel id :          ",query_id)
         print("Version :           ",used_version)
@@ -94,21 +106,26 @@ def main():
 
     # Send patient data to db 
     if(cli.patient_info == True):
-
+        log.logger.debug("Inserting patient details")
         today_date = datetime.now()
-        #db.insert_patient_record(cli.args.patientID,
-         #                        cli.args.sampleID,
-          #                       unique_panel_id,
-           #                      today_date)    
+        db.insert_patient_record(cli.args.patientID,
+                                 cli.args.sampleID,
+                                 unique_panel_id,
+                                 today_date)    
+        db.connection.commit()
 
 
 
     # Get patient data if option present
-    #if(type(cli.get_patient_data) == str):
-    #    #pat_data = db.retrieve_patient_and_panel_info(cli.get_patient_data)
-    #    #print(pat_data)
-    #    pass
-    
+    if(type(cli.args.get_patient_data) == str):
+        log.logger.debug("Getting patient details")
+        pat_data = db.retrieve_patient_and_panel_info(cli.args.get_patient_data)
+        for item in pat_data:
+            pat_list = [item[0],item[1],item[2],item[3],item[4],item[5]]
+            print(pat_list)
+
+    # Close db connection
+    db.connection.close()
 
 
 if (__name__ == "__main__"):

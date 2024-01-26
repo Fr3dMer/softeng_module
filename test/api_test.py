@@ -10,7 +10,7 @@ import json
 import pytest
 import responses
 import src.api as api_obj
-import src.logging_1_0 as log_obj
+import src.logging as log_obj
 
 #-----------------------------------------------------------------------------
 # Setup test enviro 

@@ -263,6 +263,7 @@ class api_obj():
         """
 
         # Make a call to API and get GMS version
+        self.log.logger.debug("Parsing data")
         query_version = float(parser.extract_version(raw_data))
         query_id = int(parser.extract_panel_id(raw_data))
         gms_panel = self.get_gms_pannel(query_id)
