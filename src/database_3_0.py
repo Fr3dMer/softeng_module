@@ -10,7 +10,7 @@ from sqlalchemy import (MetaData, Table, Column, String, Float, LargeBinary,
                         ForeignKey, or_, inspect, DateTime, Integer)
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.sql import func
-from logging import logger
+import src.logging as logger
 import json
 import datetime
 
@@ -133,7 +133,7 @@ class PanelAppDB:
             ))
             return True
         except SQLAlchemyError as e:
-            logger.exception(f"Error occurred inserting patient record: {e}")
+            logger.error(f"Error occurred inserting patient record: {e}")
             return False
 
     def insert_panel_record_rcode(self, unique_panel_id, panelapp_panel_id,
@@ -163,6 +163,7 @@ class PanelAppDB:
                     self.panels.columns.r_code == r_code)).fetchall()]
 
             # Insert new record if version not present
+
             if version not in list_of_version:
                 self.connection.execute(db.insert(self.panels).values(
                     unique_panel_id=unique_panel_id,
@@ -214,7 +215,7 @@ class PanelAppDB:
                                    .fetchall()]
 
             # Insert new record if version not present
-            if version not in list_of_version:
+            if float(version) not in list_of_version:
                 self.connection.execute(db.insert(self.panels).values(
                     unique_panel_id=unique_panel_id,
                     panelapp_panel_id=panelapp_panel_id,
