@@ -17,13 +17,14 @@ import sys
 from datetime import datetime
 
 def main():
+    """"""
 
     # Initiaslise CLI obj
     cli = cli_module.cli_obj(sys.argv[1:])
     
     # Instantiate logger, api obj, parser and DB
-    logger = log_obj.LoggerManager()
-    api = api_module.api_obj(logger)
+    log = log_obj.LoggerManager()
+    api = api_module.api_obj(log)
     parser = parser_obj.Parser("args")
 
     # Check internet connection
@@ -35,12 +36,12 @@ def main():
     # If no internet, get panel from db using rcode
     if(internet_status == False and type(cli.args.rcode) == str):
         #raw_data = db.retrieve_highest_version_json(cli.args.rcode)
-        print(int_disc)
+        log.logger.warning(int_disc)
     
     # If no internet, get panel from db using ponel id
     elif(internet_status == False and type(cli.panel_id.rcode) == int):
         #raw_data = db.retrieve_highest_version_json(cli.panel_id.rcode)
-        print(int_disc)
+        log.logger.warning(int_disc)
 
     # Otherwise using panel id, get most recent GMS panel
     elif(type(cli.args.panel_id) == int):
@@ -52,13 +53,12 @@ def main():
         raw_data = api.get_single_detailed_pannel_rcode(cli.args.rcode)
         raw_data = api.get_gms_versions(raw_data,parser)
     
-    else:
-        raise SystemExit("Panel id or Rcode must be entered")
 
     # Check None has been returned, which is returned by 
     # db retrieve_highest_version_json if panel not present in db 
     if (raw_data == None):
-        raise SystemExit("No GMS panels present in database")
+        log.logger.error("No GMS panels present in database")
+        raise SystemExit
 
     #print(cli.return_panel_info)
     if (cli.return_panel_info == True):
