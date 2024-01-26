@@ -67,13 +67,13 @@ class Parser():
             gene_info = input_json['genes']
             location_list = []
             for x in gene_info:
-                if ref_seq = 'grch38':
+                if ref_seq == 'grch38':
                     location = ('chr'+x.get('gene_data',{}).get('ensembl_genes',{})
-                                .get('GRch38',{}).get('90',{}).get('location',{})
-                if ref_seq = 'grch37':
+                                .get('GRch38',{}).get('90',{}).get('location',{}))
+                if ref_seq == 'grch37':
                     location = ('chr'+x.get('gene_data',{}).get('ensembl_genes',{})
                                 .get('GRch37',{}).get('82',{}).get('location',{}))
-                else: ValueError:
+                else: 
                     print('ValueError: ')
                 bed_str = np.nan
                 location_list.append(location)

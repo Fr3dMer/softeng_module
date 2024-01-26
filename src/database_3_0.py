@@ -10,7 +10,7 @@ from sqlalchemy import (MetaData, Table, Column, String, Float, LargeBinary,
                         ForeignKey, or_, inspect, DateTime, Integer)
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.sql import func
-from logging import logger
+import src.logging as logger
 import json
 import datetime
 
