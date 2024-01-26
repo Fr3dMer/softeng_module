@@ -1,5 +1,5 @@
 """*********************************************************
-File   :Logging_1.0.py
+File   :Logging.py
 About  :Script for logging progress and problems within app
 Author : Abi Haddon
 ************************************************************"""
