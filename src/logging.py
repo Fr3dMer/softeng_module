@@ -20,7 +20,7 @@ class LoggerManager:
         log messages.
     """
 
-    def __init__(self, log_file_path='PanelAppDB_log_file.log'):
+    def __init__(self, log_file_path='PanelAppDB_log_file.log',debug_mode=False):
         """
         Initializes the LoggerManager with the specified log file path.
 
@@ -30,8 +30,12 @@ class LoggerManager:
         try:
             # Create a logger with the name of the current module
             self.logger = logging.getLogger(__name__)
+            
             # Set the logger level to DEBUG
-            self.logger.setLevel(logging.DEBUG)
+            if (debug_mode == True):
+                self.logger.setLevel(logging.DEBUG)
+            else:
+                self.logger.setLevel(logging.WARNING)
 
             # Define a formatter with the desired log message format
             formatter = logging.Formatter('%(asctime)s - %(name)s - '
@@ -43,12 +47,12 @@ class LoggerManager:
             file_handler = RotatingFileHandler(log_file_path, maxBytes=20480,
                                                backupCount=5)
             file_handler.setFormatter(formatter)
-            file_handler.setLevel(logging.DEBUG)
+            #file_handler.setLevel(logging.DEBUG)
 
             # Create a stream handler to output log messages to console
             stream_handler = logging.StreamHandler()
             stream_handler.setFormatter(formatter)
-            stream_handler.setLevel(logging.DEBUG)
+            #stream_handler.setLevel(logging.DEBUG)
 
             # Add both handlers to the logger
             self.logger.addHandler(file_handler)

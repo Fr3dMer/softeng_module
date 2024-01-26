@@ -13,4 +13,4 @@ RUN apt-get update && apt-get install -y \
 RUN pip install -r docs/requirements.txt
 
 # Entry to script
-ENTRYPOINT ["python3","PannelAppDB.py"]
+ENTRYPOINT ["python3","PanelAppDB.py"]
