@@ -20,9 +20,9 @@ mkdir db
 ```
 ## Running script localy using conda environment above in normal mode
 ```bash
-conda activate PannelAppDB
+conda activate PanelAppDB
 mkdir db
-python PannelAppDB.py -r R45 -g 123 -pid 123 -sid 456 -f'db/'
+python PanelAppDB.py -r R45 -g 123 -pid 123 -sid 456 -f'db/'
 ```
 ## Building and running script inside container 
 ```bash
@@ -34,9 +34,9 @@ sudo docker run --rm panel_app_db -p 3
 
 ## Running script localy using conda environment above in debug mode
 ```bash
-conda activate PannelAppDB
+conda activate PanelAppDB
 mkdir db
-python PannelAppDB.py -r R45 -g 123 -pid 123 -sid 456 -d -f'db/'
+python PanelAppDB.py -r R45 -g 123 -pid 123 -sid 456 -d -f'db/'
 ```
 
 
