@@ -1,5 +1,5 @@
 """*********************************************************
-File   :Logging_1.0.py
+File   :Logging.py
 About  :Script for logging progress and problems within app
 Author : Abi Haddon
 ************************************************************"""
@@ -30,7 +30,7 @@ class LoggerManager:
         try:
             # Create a logger with the name of the current module
             self.logger = logging.getLogger(__name__)
-            
+
             # Set the logger level to DEBUG
             if (debug_mode == True):
                 self.logger.setLevel(logging.DEBUG)
@@ -46,13 +46,24 @@ class LoggerManager:
             # Create a rotating file handler for log files
             file_handler = RotatingFileHandler(log_file_path, maxBytes=20480,
                                                backupCount=5)
+            
             file_handler.setFormatter(formatter)
-            #file_handler.setLevel(logging.DEBUG)
+            # Set the logger level to DEBUG
+            if (debug_mode == True):
+                file_handler.setLevel(logging.DEBUG)
+            else:
+                file_handler.setLevel(logging.WARNING)
 
             # Create a stream handler to output log messages to console
             stream_handler = logging.StreamHandler()
             stream_handler.setFormatter(formatter)
-            #stream_handler.setLevel(logging.DEBUG)
+
+            stream_handler.setLevel(logging.DEBUG)
+            # Set the logger level to DEBUG
+            if (debug_mode == True):
+                stream_handler.setLevel(logging.DEBUG)
+            else:
+                stream_handler.setLevel(logging.WARNING)
 
             # Add both handlers to the logger
             self.logger.addHandler(file_handler)
