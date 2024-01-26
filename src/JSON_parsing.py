@@ -93,7 +93,7 @@ class Parser():
             gene_info = input_json['genes']
             location_list = []
             for x in gene_info:
-                location = 'chr'+x.get('gene_data',{}).get('ensembl_genes',{}).get('GRch38',{}).get('90',{}).get('location',{})
+                location = 'chr'+x.get('gene_data',{}).get('ensembl_genes',{}).get('GRch38',{}).get('82',{}).get('location',{})
                 location_list.append(location)
             location_str = "\n".join(location_list)
             bed_str = location_str.replace(':',' ').replace('-',' ')
