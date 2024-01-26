@@ -1,6 +1,7 @@
-# A fully rendered markdown file (README.md) that describes the project
-
 # PannelAppDB
+
+- For help please use `-h` command
+
 
 ## Install via conda
 ```bash
@@ -36,7 +37,7 @@ sudo docker run --rm panel_app_db -p 3 -g 123 -pid 123 -sid 456 -d
 ```bash
 conda activate PanelAppDB
 mkdir db
-python PanelAppDB.py -r R45 -g 123 -pid 123 -sid 456 -d -f'db/'
+python PanelAppDB.py -r R45 -g 123 -pid 123 -sid 456 -d -f 'db/'
 ```
 
 
@@ -48,6 +49,6 @@ pytest test/
 
 
 
-## Proposed structure of app
+## Structure of app
 ![flow chart showing structure of app](docs/Flowchart.png)
 
