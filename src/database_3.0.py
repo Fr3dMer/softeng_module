@@ -1,5 +1,5 @@
 """*******************************************************************
-File    : Database_3.0.py
+File    : Database_3_0.py
 About   : Generate and interact with PanelApp Database
 Author  : Abi Haddon
 *******************************************************************"""
@@ -353,7 +353,6 @@ class PanelAppDB:
 
 
 if (__name__ == "__main__"):
-    db_manager = None
     try:
         # Example usage of database
         db_manager = PanelAppDB()
