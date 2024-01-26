@@ -4,6 +4,7 @@ About         : Hold main logical flow for app
 Author        : Freddie Mercer
 ****************************************************************************"""
 
+
 import json
 import pandas as pd
 import src.api as api_module
@@ -13,6 +14,7 @@ import src.logging as log_obj
 import sys
 import src.database_3_0 as db_obj
 from datetime import datetime
+
 
 def main():
     """Main function for script, tying together logic and objects 
@@ -100,8 +102,8 @@ def main():
                             query_id,
                             r_code, 
                             used_version, 
-                            str(genes), 
-                            json.dumps(raw_data, indent=2).encode('utf-8'), 
+                            str(genes),
+                            json.dumps(raw_data, indent=2).encode('utf-8'),
                             b'BED_GrCH37', 
                             b'BED_GrCH38')
         db.connection.commit()
@@ -131,7 +133,8 @@ def main():
     # Get patient data if option present
     if(type(cli.args.get_patient_data) == str):
         log.logger.debug("Getting patient details")
-        pat_data = db.retrieve_patient_and_panel_info(cli.args.get_patient_data)
+        pat_data = db.retrieve_patient_and_panel_info(
+                            cli.args.get_patient_data)
         for item in pat_data:
             pat_list = [item[0],item[1],item[2],item[3],item[4],item[5]]
             print("Returned patient records:",pat_list)
@@ -142,4 +145,4 @@ def main():
 
 if (__name__ == "__main__"):
 
-   main()
+    main()
