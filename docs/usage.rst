@@ -5,8 +5,7 @@ rtdtytuh hgtfytu
 Installation
 ----------------
 
-Install via conda
-.. code-block:: console
+Install via conda::
 
    # Clone PanelAppDB from Github repository
    git clone https://github.com/Fr3dMer/softeng_module.git
@@ -15,14 +14,13 @@ Install via conda
    mkdir db
 
 
-   ## Install via pip
-   - This section has been added to satisfy the rebric 
-   ```bash
+Install via pip::
+
    git clone https://github.com/Fr3dMer/softeng_module.git
    # Recommend creating venv or conda environment and activating it before carrying out this step
    pip install -r docs/requirements.txt
    mkdir db
-   ```
+
 Retreiving Pannel info
 ----------------
 
