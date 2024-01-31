@@ -60,7 +60,6 @@ pytest test/
 ```
 
 
-
 ## Structure of app
 ![flow chart showing structure of app](docs/Flowchart.png)
 
