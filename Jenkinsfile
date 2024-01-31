@@ -1,5 +1,9 @@
 pipeline {
-    agent any // This specifies that the pipeline can run on any available agent (Jenkins slave).
+    agent {
+        docker {
+            image "docker:24.0.6-git" // Set docker image
+        }
+    }
 
     stages {
         stage('Build') {
