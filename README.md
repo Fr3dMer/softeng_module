@@ -12,7 +12,7 @@ Functionality provided by PanelAppDB include:
 - Generate BED file for gene panels
 - Search for gene panels used for specific patients
 
-ReadTheDocs documentation available at: https://softeng-module.readthedocs.io/en/latest/ 
+ReadTheDocs documentation available at: https://softeng-module.readthedocs.io/en/main/ 
 
 ## Install via conda
 ```bash
