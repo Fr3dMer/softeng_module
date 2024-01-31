@@ -11,6 +11,9 @@ Proposed structure of app
 ----------------------------
 ![flow chart showing structure of app](docs/Flowchart.png)
 
+.. image:: docs/Flowchart.png
+   :width: 700
+
 Licence
 --------
 MIT Licence Copyright 2024 Fredrick, Abi, Amy
