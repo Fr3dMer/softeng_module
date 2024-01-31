@@ -9,10 +9,9 @@ Functionality provided by PanelAppDB include: - Search for gene panel informatio
 
 Proposed structure of app
 ----------------------------
-![flow chart showing structure of app](docs/Flowchart.png)
 
 .. image:: docs/Flowchart.png
-   :width: 700
+   :width: 1000
 
 Licence
 --------
