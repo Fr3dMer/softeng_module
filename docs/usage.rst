@@ -5,19 +5,15 @@ rtdtytuh hgtfytu
 Installation
 ----------------
 
-To use PannelAppDB, first install it using pip:
-
+Install via conda
 .. code-block:: console
 
-   (.venv) $ pip install PannelAppDB
-
-   ## Install via conda
-   ```bash
+   # Clone PanelAppDB from Github repository
    git clone https://github.com/Fr3dMer/softeng_module.git
    conda env create -n PanelAppDB --file environment.yml
    conda activate PanelAppDB
    mkdir db
-   ```
+
 
    ## Install via pip
    - This section has been added to satisfy the rebric 
