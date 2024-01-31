@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // In this stage, you can put commands to build your project.
+                // This stage builds PanelAppDB Project.
                 sh 'echo "Building the project..."'
             }
         }
@@ -17,6 +17,8 @@ pipeline {
             steps {
                 // In this stage, you can put commands to run tests.
                 sh 'echo "Running tests..."'
+                def dockerfile = './Dockerfile'
+
             }
         }
     }
