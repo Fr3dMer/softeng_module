@@ -3,13 +3,16 @@ PanelAppDB
 
 PanelAppDB is a tool to search and store gene panel information for genetic tests included in the National Genomic Testing Directory.
 
-**Functionality**
+Functionality
+--------------
 Functionality provided by PanelAppDB include: - Search for gene panel information by R code - Generate BED file for gene panels - Search for gene panels used for specific patients
 
-**Proposed structure of app**
+Proposed structure of app
+----------------------------
 ![flow chart showing structure of app](docs/Flowchart.png)
 
-**Licence**
+Licence
+--------
 MIT Licence Copyright 2024 Fredrick, Abi, Amy
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
