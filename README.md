@@ -14,6 +14,7 @@ Functionality provided by PanelAppDB include:
 ## Install 
 ```bash
 git clone https://github.com/Fr3dMer/softeng_module.git
+cd softeng_module
 conda env create -n PannelAppDB --file environment.yml
 conda activate PannelAppDB
 ```
