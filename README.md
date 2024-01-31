@@ -1,7 +1,18 @@
 # PannelAppDB
+PanelAppDB
+============
+PanelAppDB is a tool to search and store gene panel information for genetic tests included in the National Genomic Testing Directory.
 
 - For help please use `-h` command
 
+Functionality
+---------------
+Functionality provided by PanelAppDB include:
+- Search for gene panel information by R code
+- Generate BED file for gene panels
+- Search for gene panels used for specific patients
+
+ReadTheDocs documentation available at: https://softeng-module.readthedocs.io/en/latest/ 
 
 ## Install via conda
 ```bash
@@ -23,7 +34,7 @@ mkdir db
 ```bash
 conda activate PanelAppDB
 mkdir db
-python PanelAppDB.py -r R45 -g 123 -pid 123 -sid 456 -f'db/'
+python PanelAppDB.py -r R45 -g 123 -pid 123 -sid 456 -f 'db/'
 ```
 ## Building and running script inside container 
 ```bash
