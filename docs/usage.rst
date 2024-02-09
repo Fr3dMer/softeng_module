@@ -32,10 +32,12 @@ Retreiving Pannel info
 Once the tool is successfully installed, it can be used to retrieve panel information.
 
 Search by r-code::
+
    # To search by r-code, use the -r flag
    python PanelAppDB.py -r R45
 
 This will return the panel id, Version, disease code and a table of gene regions covered by the panel.::
+   
    Panel id :           3
    Version :            4.0
    Disease:             R45
