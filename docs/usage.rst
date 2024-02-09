@@ -27,17 +27,17 @@ Please see below for step by step installation instructions.
    pip install -r docs/requirements.txt
 
 
-Retreiving Pannel info
+Retreiving Pannel Information
 -----------------------
 Once the tool is successfully installed, it can be used to retrieve panel information.
 
-Search by r-code::
+**Search by r-code**::
 
-   # To search by r-code, use the -r flag
+   # To search by r-code, use the -r or --rcode flag
    python PanelAppDB.py -r R45
 
 This will return the panel id, Version, disease code and a table of gene regions covered by the panel.::
-   
+
    Panel id :           3
    Version :            4.0
    Disease:             R45
@@ -55,6 +55,18 @@ This will return the panel id, Version, disease code and a table of gene regions
    |  8 | VCAN          | HGNC:2464  | 5:83471465-83582303   |
    |  9 | LOXL3         | HGNC:13869 | 2:74532414-74555690   |
    | 10 | LRP2          | HGNC:6694  | 2:169127109-169362685 |
+
+**Search by PanelApp ID**::
+   #To search by the PanelApp ID number, use -p or --panel_id flags
+   python PanelAppDB.py -p 512
+
+This will return the same output as search by R code as outlined above.
+
+Inserting New Patient Data 
+-------------------------------------------
+To insert new patient information into the database, 
+
+?????????
 
 To retrieve a the gene regions covered by a pannel,
 you can use the ``pannelapp.?????()`` function:
