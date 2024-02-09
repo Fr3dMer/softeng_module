@@ -2,6 +2,8 @@ PanelAppDB
 ============
 PanelAppDB is a tool to search and store gene panel information for genetic tests included in the National Genomic Testing Directory.
 
+- For help please use `-h` command
+
 Functionality
 ---------------
 Functionality provided by PanelAppDB include:
@@ -15,8 +17,8 @@ Functionality provided by PanelAppDB include:
 ```bash
 git clone https://github.com/Fr3dMer/softeng_module.git
 cd softeng_module
-conda env create -n PannelAppDB --file environment.yml
-conda activate PannelAppDB
+conda env create -n PanelAppDB --file environment.yml
+conda activate PanelAppDB
 ```
 
 ## Building and running script inside container 
