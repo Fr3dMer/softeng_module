@@ -4,8 +4,10 @@ rtdtytuh hgtfytu
 
 Installation
 ----------------
+PanelAppDB can be installed using either conda or pip.
+Please see below for step by step installation instructions.
 
-Install via conda::
+**Install via conda**::
 
    # Clone PanelAppDB from Github repository
    git clone https://github.com/Fr3dMer/softeng_module.git
@@ -13,22 +15,44 @@ Install via conda::
    conda env create -n PanelAppDB --file environment.yml
    # Activate conda environment
    conda activate PanelAppDB
-   # Create directory for database
-   mkdir db
 
 
-Install via pip::
+
+**Install via pip**::
 
    # Clone PanelAppDB from Github repository
    git clone https://github.com/Fr3dMer/softeng_module.git
    # Install requirements
    # Recommend creating venv or conda environment and activating it before carrying out this step
    pip install -r docs/requirements.txt
-   # Create directory for database
-   mkdir db
+
 
 Retreiving Pannel info
-----------------
+-----------------------
+Once the tool is successfully installed, it can be used to retrieve panel information.
+
+Search by r-code::
+   # To search by r-code, use the -r flag
+   python PanelAppDB.py -r R45
+
+This will return the panel id, Version, disease code and a table of gene regions covered by the panel.::
+   Panel id :           3
+   Version :            4.0
+   Disease:             R45
+   Last updated:        2023-03-22
+   |    | HGNC Symbol   | HGNC ID    | GRch38 location       |
+   |---:|:--------------|:-----------|:----------------------|
+   |  0 | BMP4          | HGNC:1071  | 14:53949736-53958761  |
+   |  1 | COL11A1       | HGNC:2186  | 1:102876467-103108496 |
+   |  2 | COL11A2       | HGNC:2187  | 6:33162681-33192499   |
+   |  3 | COL2A1        | HGNC:2200  | 12:47972965-48004486  |
+   |  4 | COL9A1        | HGNC:2217  | 6:70215061-70303083   |
+   |  5 | COL9A2        | HGNC:2218  | 1:40300487-40317816   |
+   |  6 | COL9A3        | HGNC:2219  | 20:62816244-62841159  |
+   |  7 | GZF1          | HGNC:15808 | 20:23362182-23373063  |
+   |  8 | VCAN          | HGNC:2464  | 5:83471465-83582303   |
+   |  9 | LOXL3         | HGNC:13869 | 2:74532414-74555690   |
+   | 10 | LRP2          | HGNC:6694  | 2:169127109-169362685 |
 
 To retrieve a the gene regions covered by a pannel,
 you can use the ``pannelapp.?????()`` function:
