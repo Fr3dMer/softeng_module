@@ -28,7 +28,7 @@ Please see below for step by step installation instructions.
 
 
 Retreiving Pannel Information
------------------------
+------------------------------
 Once the tool is successfully installed, it can be used to retrieve panel information.
 
 **Search by r-code**::
@@ -57,10 +57,19 @@ This will return the panel id, Version, disease code and a table of gene regions
    | 10 | LRP2          | HGNC:6694  | 2:169127109-169362685 |
 
 **Search by PanelApp ID**::
+
    #To search by the PanelApp ID number, use -p or --panel_id flags
    python PanelAppDB.py -p 512
 
 This will return the same output as search by R code as outlined above.
+
+
+Generate BED Files
+-------------------------
+PanelAppDB can be used to generate BED files for queried panels and save them locally.
+
+**Generate GRCh37 BED Files**::
+
 
 Inserting New Patient Data 
 -------------------------------------------
@@ -75,8 +84,13 @@ you can use the ``pannelapp.?????()`` function:
 
 
 
-For example:
+Search for Patient Data
+-------------------------
+Patient data can be searched by patient ID number.
 
->>> import PannelAppDB
->>> PannelAppDB.??????()
-['CFTR']
+**Search by Patient ID**::
+
+   # To search for patient records, use -r to specify the rcode and -g is specify the patiend ID
+   python PanelAppDB.py -r R45 -g 124 -f 'db/'
+
+
