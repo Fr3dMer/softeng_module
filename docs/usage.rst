@@ -76,15 +76,18 @@ PanelAppDB can be used to generate BED files for queried panels and save them lo
 
 Inserting New Patient Data 
 -------------------------------------------
-To insert new patient information into the database, 
+To insert new patient information into the database, specify the patient ID number, sample ID number, R code of the panel applied and the database location.
 
-?????????
+-r or --rcode specified the panel applied to the patient testing
+-pid or --patientID specifies the patient ID to insert
+-sid or --sampleID specifies the sample ID to insert
+-f or --fdb specifies the local database location to insert data into
 
-To retrieve a the gene regions covered by a pannel,
-you can use the ``pannelapp.?????()`` function:
 
-.. autofunction:: pannelapp.?????
+**Insert Patient Data**::
 
+   # To insert patient data use the flags listed above
+   python PanelAppDB.py -r R46 -pid 133 -sid 433 -f 'db/'
 
 
 Search for Patient Data
@@ -93,7 +96,7 @@ Patient data can be searched by patient ID number.
 
 **Search by Patient ID**::
 
-   # To search for patient records, use -g flag to specify the patient ID
+   # To search for patient records, use -g or --get_patient_data flags to specify the patient ID
    python PanelAppDB.py -g 124 -f 'db/'
 
 
