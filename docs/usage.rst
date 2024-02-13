@@ -68,9 +68,21 @@ Generate BED Files
 -------------------------
 PanelAppDB can be used to generate BED files for queried panels and save them locally.
 
+
 **Generate GRCh37 BED Files**::
 
-   # To generate a BED file with GRCh37 location
+   # Use -b37 or --bed37 to specify the path and desired BED filename
+   python PanelAppDB.py -r R45 -b37 'db/R45_v1.bed'
+
+This example will generate a bed file using GRCh37 loci for the current R45 panel and save it locally with a path of db/R45_v1.bed.
+
+**Generate GRCh38 BED Files**::
+
+   # Use -b38 or --bed38 to specify the path and desired BED filename
+   python PanelAppDB.py -r R45 -b38 'db/R45_v1.bed'
+
+
+This example will generate a bed file using GRCh38 loci for the current R45 panel and save it locally with a path of db/R45_v1.bed.
    
 
 
