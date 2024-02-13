@@ -46,6 +46,7 @@ def main():
                + "#######################################################\n"
 
     # If no internet, get panel from db using rcode
+    raw_data = ""
     if(internet_status == False and type(cli.args.rcode) == str):
         raw_data = db.retrieve_highest_version_json(cli.args.rcode)
         log.logger.warning(int_disc)
