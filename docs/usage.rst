@@ -70,6 +70,9 @@ PanelAppDB can be used to generate BED files for queried panels and save them lo
 
 **Generate GRCh37 BED Files**::
 
+   # To generate a BED file with GRCh37 location
+   
+
 
 Inserting New Patient Data 
 -------------------------------------------
@@ -90,7 +93,7 @@ Patient data can be searched by patient ID number.
 
 **Search by Patient ID**::
 
-   # To search for patient records, use -r to specify the rcode and -g is specify the patiend ID
-   python PanelAppDB.py -r R45 -g 124 -f 'db/'
+   # To search for patient records, use -g flag to specify the patient ID
+   python PanelAppDB.py -g 124 -f 'db/'
 
 
