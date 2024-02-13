@@ -99,7 +99,7 @@ class cli_obj():
         # Check save location for bed38 exists
         if (type(self.args.bed38) == str):
             
-            if not (os.path.isfile(self.args.bed38)):
+            if (os.path.isfile(self.args.bed38)):
                 error_msg = 'The path you provided for bed38 ' \
                             + 'does already exist'
                 self.parser.error(error_msg)
