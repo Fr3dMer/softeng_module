@@ -112,3 +112,12 @@ Patient data can be searched by patient ID number.
    python PanelAppDB.py -g 124 -f 'db/'
 
 
+Run in Debug mode 
+------------------
+The module can be run in debug mode by using the -d or --debug_mode flags
+
+**Debug Mode**::
+
+   # To search for a panel in debug mode use the -d flag
+   python PanelAppDB.py -r R46 -d
+
