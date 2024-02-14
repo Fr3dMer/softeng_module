@@ -3,20 +3,21 @@ File          : api_test.py
 About         : Test API wrapper/interface works as expected, api calls
                   intercepted through responses lib 
 Author        : Freddie Mercer
-Date modified : 2023-12-08
+Date modified : 2023-12-20
 ***************************************************************************"""
 
 import json
 import pytest
 import responses
 import src.api as api_obj
+import src.logging as log_obj
 
 #-----------------------------------------------------------------------------
 # Setup test enviro 
 #-----------------------------------------------------------------------------
 @pytest.fixture
 def api_setup():
-    yield api_obj.api_obj("args")
+    yield api_obj.api_obj(log_obj.LoggerManager())
 
 @pytest.fixture
 def normal_json():
@@ -79,9 +80,9 @@ class TestApi():
 
 #-----------------------------------------------------------------------------
 #                   get_gms_pannel test 
-# 	Function: Funcs goal is to ensure values are correct type before being
+#  Function: Funcs goal is to ensure values are correct type before being
 #               used for api call
-# 	Tests: Test no params does not raise error, test correct formating of
+#  Tests: Test no params does not raise error, test correct formating of
 #           pannel_id,version and rcode data types
 #-----------------------------------------------------------------------------
     def test_api1_value_checker(self,api_setup):
@@ -91,15 +92,15 @@ class TestApi():
 
         # Normal panel id 
         p_id = 123
-        assert api_setup.value_checker(pannel_id = p_id) == None
+        assert api_setup.value_checker(panel_id = p_id) == None
         
         # Incorrect panel id's
         str_p_id = '123'
         float_p_id = 1.23
-        with pytest.raises(SystemError):
-            assert api_setup.value_checker(pannel_id = str_p_id)
-        with pytest.raises(SystemError):
-            assert api_setup.value_checker(pannel_id = float_p_id)
+        with pytest.raises(ValueError):
+            assert api_setup.value_checker(panel_id = str_p_id)
+        with pytest.raises(ValueError):
+            assert api_setup.value_checker(panel_id = float_p_id)
 
         # Normal version (can be str or float) 
         str_ver = '1.2'
@@ -108,7 +109,7 @@ class TestApi():
         assert api_setup.value_checker(version = float_ver) == None
 
         # Incorrect version type
-        with pytest.raises(SystemError):
+        with pytest.raises(ValueError):
             assert api_setup.value_checker(version = p_id)
 
         # Normal rcode 
@@ -116,14 +117,14 @@ class TestApi():
         assert api_setup.value_checker(rcode = str_rcode) == None
 
         # Incorrect rcode type
-        with pytest.raises(SystemError):
+        with pytest.raises(ValueError):
             assert api_setup.value_checker(rcode = p_id)
 
 
 #-----------------------------------------------------------------------------
 #                   version_check test 
-# 	Function: wants to compare versions of panels
-# 	Tests: Are the variables entered comparable and does comparison work
+#  Function: wants to compare versions of panels
+#  Tests: Are the variables entered comparable and does comparison work
 #-----------------------------------------------------------------------------
     def test_api2_version_check(self,api_setup):
 
@@ -143,8 +144,8 @@ class TestApi():
 
 #-----------------------------------------------------------------------------
 #                   check_internet test 
-# 	Function: ensure there is an actual internet connection
-# 	Tests: Using a normla and garbled url, does it return correct bools
+#  Function: ensure there is an actual internet connection
+#  Tests: Using a normla and garbled url, does it return correct bools
 #-----------------------------------------------------------------------------
     def test_api3_check_internet(self,api_setup):
 
@@ -157,8 +158,8 @@ class TestApi():
 
 #-----------------------------------------------------------------------------
 #                   get_gms_pannel test 
-# 	Function: get most recently signed off GMS pannel
-# 	Tests: ensure URL correctly formated and called
+#  Function: get most recently signed off GMS pannel
+#  Tests: ensure URL correctly formated and called
 #-----------------------------------------------------------------------------
     @responses.activate
     def test_api4_get_gms_pannel(self,api_setup,gms_data_json,response):
@@ -170,8 +171,8 @@ class TestApi():
 
 #-----------------------------------------------------------------------------
 #                   get_single_detailed_pannel_id test 
-# 	Function: call API and return parsed JSON, can specify version 
-# 	Tests: Normal function with and withought version
+#  Function: call API and return parsed JSON, can specify version 
+#  Tests: Normal function with and withought version
 #-----------------------------------------------------------------------------
     @responses.activate
     def test_api5_get_single_detailed_pannel_id(self,
@@ -192,8 +193,8 @@ class TestApi():
 
 #-----------------------------------------------------------------------------
 #                   get_single_detailed_pannel_rcode test 
-# 	Function: call api by rcode and return correct data  
-# 	Tests: Normal functioning
+#  Function: call api by rcode and return correct data  
+#  Tests: Normal functioning
 #-----------------------------------------------------------------------------
     @responses.activate
     def test_api6_get_single_detailed_pannel_rcode(self,
