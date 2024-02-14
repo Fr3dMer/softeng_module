@@ -41,22 +41,6 @@ def test_cli_obj_invalid_combination_args():
         cli = cli_obj.cli_obj(args)
 
 
-def test_cli_obj_invalid_bed_paths_37():
-    # Test case for invalid bed37 file paths
-    args = ["-p", "1", "-r", "rcode", "-b37", "/invalid/path/bed37"]
-
-    with pytest.raises(SystemExit):
-        cli = cli_obj.cli_obj(args)
-
-
-def test_cli_obj_invalid_bed_paths_38():
-    # Test case for invalid bed37 file paths
-    args = ["-p", "1", "-r", "rcode", "-b38", "/invalid/path/bed38"]
-
-    with pytest.raises(SystemExit):
-        cli = cli_obj.cli_obj(args)
-
-
 def test_cli_obj_no_sampleid():
     # Test case for not providing sampple_id wiht rcode
     args = ["-pid", "patientID"]

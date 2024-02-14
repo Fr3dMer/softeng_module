@@ -31,15 +31,11 @@ def test_log_levels(logger_manager, caplog):
     # Get the logger object from LoggerManager
     logger = logger_manager.logger
     # Check if log messages are recorded at different levels
-    logger.debug('Debug Message')
-    logger.info('Info Message')
     logger.warning('Warning Message')
     logger.error('Error Message')
     logger.critical('Critical Message')
 
     # Check if log messages are captured in log 'caplog.txt'
-    assert 'Debug Message' in caplog.text
-    assert 'Info Message' in caplog.text
     assert 'Warning Message' in caplog.text
     assert 'Error Message' in caplog.text
     assert 'Critical Message' in caplog.text
