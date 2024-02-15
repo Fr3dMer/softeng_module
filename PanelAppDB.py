@@ -146,8 +146,12 @@ def main():
         pat_data = db.retrieve_patient_and_panel_info(
                             cli.args.get_patient_data)
         for item in pat_data:
-            pat_list = [item[0],item[1],item[2],item[3],item[4],item[5]]
-            print("Returned patient records:",pat_list)
+            #pat_list = [item[0],item[1],item[2],item[3],item[4],item[5]]
+            formatted_date = (str(item[2].day)+'/'+str(item[2].month)+
+                              '/'+str(item[2].year)+' '+str(item[2].hour)+':'+str(item[2].minute))
+            pat_dict = {'Sample ID: ':item[0],'Patient ID: ':item[1], 'Date: ':formatted_date,
+                        'PanelApp ID: ':item[3],'Rcode: ':item[4],'Version: ':item[5]}
+            print("Returned patient records:",pat_dict)
 
     # Close db connection
     db.connection.close()
