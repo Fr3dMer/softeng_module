@@ -1,7 +1,7 @@
 """****************************************************************************
 File          : JSON_parsing.py
 About         : Parse information from PanelApp API to human readable text 
-Author        : Freddie Mercer
+Author        : Amy Grimwood
 ****************************************************************************"""
 
 """This is the JSON_parsing module.
