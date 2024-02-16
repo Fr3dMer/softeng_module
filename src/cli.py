@@ -90,23 +90,23 @@ class cli_obj():
 
         # Check save location for bed37 exists
         if (type(self.args.bed37) == str):
-
-            if not (os.path.isdir(self.args.bed37)):
+            
+            if (os.path.isfile(self.args.bed37)):
                 error_msg = 'The path you provided for bed37 ' \
-                            + 'does not exist'
+                            + 'does already exist'
                 self.parser.error(error_msg)
 
         # Check save location for bed38 exists
         if (type(self.args.bed38) == str):
             
-            if not (os.path.isdir(self.args.bed38)):
+            if (os.path.isfile(self.args.bed38)):
                 error_msg = 'The path you provided for bed38 ' \
-                            + 'does not exist'
+                            + 'does already exist'
                 self.parser.error(error_msg)
 
         # Check if any panel id entered
-        if (type(self.args.panel_id) == None and
-            type(self.args.rcode == None)):
+        if(self.args.panel_id == None and
+           self.args.rcode == None):
             self.return_panel_info = False
         else:
             self.return_panel_info = True

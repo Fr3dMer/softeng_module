@@ -46,6 +46,7 @@ def main():
                + "#######################################################\n"
 
     # If no internet, get panel from db using rcode
+    raw_data = ""
     if(internet_status == False and type(cli.args.rcode) == str):
         raw_data = db.retrieve_highest_version_json(cli.args.rcode)
         log.logger.warning(int_disc)
@@ -145,8 +146,12 @@ def main():
         pat_data = db.retrieve_patient_and_panel_info(
                             cli.args.get_patient_data)
         for item in pat_data:
-            pat_list = [item[0],item[1],item[2],item[3],item[4],item[5]]
-            print("Returned patient records:",pat_list)
+            #pat_list = [item[0],item[1],item[2],item[3],item[4],item[5]]
+            formatted_date = (str(item[2].day)+'/'+str(item[2].month)+
+                              '/'+str(item[2].year)+' '+str(item[2].hour)+':'+str(item[2].minute))
+            pat_dict = {'Sample ID: ':item[0],'Patient ID: ':item[1], 'Date: ':formatted_date,
+                        'PanelApp ID: ':item[3],'Rcode: ':item[4],'Version: ':item[5]}
+            print("Returned patient records:",pat_dict)
 
     # Close db connection
     db.connection.close()

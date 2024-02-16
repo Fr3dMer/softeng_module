@@ -1,7 +1,18 @@
-# PannelAppDB
+PanelAppDB
+============
+
+PanelAppDB is a tool to search and store gene panel information for genetic tests included in the National Genomic Testing Directory.
 
 - For help please use `-h` command
 
+Functionality
+---------------
+Functionality provided by PanelAppDB include:
+- Search for gene panel information by R code
+- Generate BED file for gene panels
+- Search for gene panels used for specific patients
+
+ReadTheDocs documentation available at: https://softeng-module-amyg.readthedocs.io/en/latest/
 
 ## Install via conda
 ```bash
@@ -24,7 +35,7 @@ mkdir db
 ```bash
 conda activate PanelAppDB
 mkdir db
-python PanelAppDB.py -r R45 -g 123 -pid 123 -sid 456 -f'db/'
+python PanelAppDB.py -r R45 -g 123 -pid 123 -sid 456 -f 'db/'
 ```
 ## Building and running script inside container 
 ```bash
@@ -44,12 +55,24 @@ python PanelAppDB.py -r R45 -g 123 -pid 123 -sid 456 -d -f 'db/'
 
 
 ## Tests
+To run tests, run the following command in root:
 ```bash
 pytest test/
 ```
 
 
-
 ## Structure of app
 ![flow chart showing structure of app](docs/Flowchart.png)
+
+
+## Licence
+### MIT Licence
+Copyright 2024 Fredrick, Abi, Amy
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
