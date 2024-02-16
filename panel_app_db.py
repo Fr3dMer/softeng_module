@@ -18,14 +18,14 @@ import src.JSON_parsing as parser_obj
 def main():
     """Main function for script, tying together logic and objects 
     in one place"""
-    
+
     # Initiaslise CLI obj
     cli = cli_module.cli_obj(sys.argv[1:])
 
     # Init logger
     log = log_obj.LoggerManager(debug_mode=cli.args.debug_mode)
     log.logger.debug("Initialising objects")
-    
+
     # Instantiate api obj, parser and DB
     api = api_module.api_obj(log)
     parser = parser_obj.Parser("args")
@@ -50,7 +50,7 @@ def main():
     if(internet_status == False and type(cli.args.rcode) == str):
         raw_data = db.retrieve_highest_version_json(cli.args.rcode)
         log.logger.warning(int_disc)
-    
+
     # If no internet, get panel from db using panel id
     elif(internet_status == False and type(cli.panel_id.rcode) == int):
         raw_data = db.retrieve_highest_version_json(cli.panel_id.rcode)
@@ -65,7 +65,7 @@ def main():
     elif(type(cli.args.rcode) == str):
         raw_data = api.get_single_detailed_pannel_rcode(cli.args.rcode)
         raw_data = api.get_gms_versions(raw_data,parser)
-    
+
 
     # Check None has been returned, which is returned by 
     # db retrieve_highest_version_json if panel not present in db 
@@ -94,7 +94,7 @@ def main():
             bed37_name = cli.args.bed37
         else:
             bed37_name = db_folder + unique_panel_id + "-bed37.bed"
-        
+
         if(type(cli.args.bed38) == str):
             bed38_name = cli.args.bed38
         else:
@@ -105,7 +105,7 @@ def main():
 
         with open(bed38_name, 'w') as file:
             file.write(BED_GrCH38)
-        
+
         # Send parsed data to db
         log.logger.debug("Inserting GMS panel data into db")
         db.insert_panel_record_panelid(unique_panel_id, 
@@ -117,7 +117,7 @@ def main():
                             BED_GrCH37, 
                             BED_GrCH38)
         db.connection.commit()
-        
+
         log.logger.debug("Printing panel details")
         # Print all parsed data
         print("Panel id :          ",query_id)
