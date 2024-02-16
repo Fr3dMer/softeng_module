@@ -13,14 +13,16 @@ import src.api as api_obj
 import src.logging as log_obj
 
 #-----------------------------------------------------------------------------
-# Setup test enviro 
+# Setup test environment
 #-----------------------------------------------------------------------------
 @pytest.fixture
 def api_setup():
-    yield api_obj.api_obj(log_obj.LoggerManager())
+    '''Setup api for testing'''
+    yield api_obj.ApiObj(log_obj.LoggerManager())
 
 @pytest.fixture
 def normal_json():
+    '''Setup test JSONs'''
     f = open("test/JSON_test_data.json")
     normal_json = json.load(f)
     f.close
@@ -28,6 +30,7 @@ def normal_json():
 
 @pytest.fixture
 def gms_data_json():
+    '''Setup test GMS approved panel JSON'''
     f = open("test/signed_off_gms.json")
     gms_data_json = json.load(f)
     f.close
@@ -40,9 +43,9 @@ def gms_json():
     f.close
     yield gms_json
 
-# Setup responses to catch calls by requests
 @pytest.fixture
 def response(normal_json,gms_data_json,gms_json):
+    '''Setup responses to catch calls by requests'''
 
     base = "https://panelapp.genomicsengland.co.uk/api/v1/panels/"
 

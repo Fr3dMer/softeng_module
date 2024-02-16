@@ -1,30 +1,24 @@
 Usage
 =====
+PanelAppDB can be run in the conda environent created in the steps above, or in a Docker container.
 
-Installation
-----------------
-PanelAppDB can be installed using either conda or pip.
-Please see below for step by step installation instructions.
+Running script localy using conda environment
+----------------------------------------------
+To run in the conda enviroment, ensure the environment is activated and submit your desired query using the corresponding arguments (discussed below). eg::
 
-**Install via conda**::
-
-   # Clone PanelAppDB from Github repository
-   git clone https://github.com/Fr3dMer/softeng_module.git
-   # Create conda environment
-   conda env create -n PanelAppDB --file environment.yml
-   # Activate conda environment
    conda activate PanelAppDB
+   python panel_app_db.py <PARAMS HERE>
+   # Example:
+   python panel_app_db.py -r R45
 
+Building and running script inside container
+---------------------------------------------
+To run in a container, build the container in docker then run it with docker run. eg: ::
 
-
-**Install via pip**::
-
-   # Clone PanelAppDB from Github repository
-   git clone https://github.com/Fr3dMer/softeng_module.git
-   # Install requirements
-   # Recommend creating venv or conda environment and activating it before carrying out this step
-   pip install -r docs/requirements.txt
-
+   sudo docker build --rm -t "panel_app_db" .
+   sudo docker run --rm panel_app_db <PARAMS HERE>
+   # example:
+   sudo docker run --rm panel_app_db -r R45 
 
 Retreiving Pannel Information
 ------------------------------
@@ -33,7 +27,7 @@ Once the tool is successfully installed, it can be used to retrieve panel inform
 **Search by r-code**::
 
    # To search by r-code, use the -r or --rcode flag
-   python PanelAppDB.py -r R45
+   python panel_app_db.py -r R45
 
 This will return the panel id, Version, disease code and a table of gene regions covered by the panel.::
 
@@ -58,7 +52,7 @@ This will return the panel id, Version, disease code and a table of gene regions
 **Search by PanelApp ID**::
 
    #To search by the PanelApp ID number, use -p or --panel_id flags
-   python PanelAppDB.py -p 512
+   python panel_app_db.py -p 512
 
 This will return the same output as search by R code as outlined above.
 
@@ -71,14 +65,14 @@ PanelAppDB can be used to generate BED files for queried panels and save them lo
 **Generate GRCh37 BED Files**::
 
    # Use -b37 or --bed37 to specify the path and desired BED filename
-   python PanelAppDB.py -r R45 -b37 'db/R45_v1.bed'
+   python panel_app_db.py -r R45 -b37 'db/R45_v1.bed'
 
 This example will generate a bed file using GRCh37 loci for the current R45 panel and save it locally with a path of db/R45_v1.bed.
 
 **Generate GRCh38 BED Files**::
 
    # Use -b38 or --bed38 to specify the path and desired BED filename
-   python PanelAppDB.py -r R45 -b38 'db/R45_v1.bed'
+   python panel_app_db.py -r R45 -b38 'db/R45_v1.bed'
 
 
 This example will generate a bed file using GRCh38 loci for the current R45 panel and save it locally with a path of db/R45_v1.bed.
@@ -98,17 +92,19 @@ To insert new patient information into the database, specify the patient ID numb
 **Insert Patient Data**::
 
    # To insert patient data use the flags listed above
-   python PanelAppDB.py -r R46 -pid 133 -sid 433 -f 'db/'
+   python panel_app_db.py -r R46 -pid 133 -sid 433 -f 'db/'
 
 
 Search for Patient Data
 -------------------------
 Patient data can be searched by patient ID number.
 
+
 **Search by Patient ID**::
 
    # To search for patient records, use -g or --get_patient_data flags to specify the patient ID
-   python PanelAppDB.py -g 124 -f 'db/'
+   python panel_app_db.py -g 124 -f 'db/'
+
 
 
 Run in Debug mode 
@@ -118,4 +114,4 @@ The module can be run in debug mode by using the -d or --debug_mode flags
 **Debug Mode**::
 
    # To search for a panel in debug mode use the -d flag
-   python PanelAppDB.py -r R46 -d
+   python panel_app_db.py -r R46 -d

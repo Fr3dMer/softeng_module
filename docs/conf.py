@@ -1,7 +1,7 @@
 """Configuration file for the Sphinx documentation builder"""
 
 # Project information
-project = 'PannelAppDB'
+project = 'PanelAppDB'
 author = "Frederick Mercer, Abigail Haddon, Amy Grimwood"
 release = '0.1'
 version = '0.1.0'

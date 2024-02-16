@@ -1,5 +1,5 @@
 """***************************************************************************
-File          : JSON_parsing.py
+File          : json_parsing.py
 About         : Ensure JSON are parsed as expected 
 Author        : Freddie Mercer
 Date modified : 2023-12-20
@@ -10,7 +10,7 @@ TODO: Need to capture logs once logging implemented
 import json
 import pytest
 import numpy as np
-import src.JSON_parsing as JSON_obj
+import src.json_parsing as JSON_obj
 
 #-----------------------------------------------------------------------------
 # Setup test enviro 
