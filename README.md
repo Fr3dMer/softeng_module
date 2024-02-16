@@ -14,46 +14,69 @@ Functionality provided by PanelAppDB include:
 
 ReadTheDocs documentation available at: https://softeng-module-amyg.readthedocs.io/en/latest/
 
-## Install via conda
+Installation
+---------------
+
+# Install via conda
 ```bash
+# Clone PanelAppDB from Github repository
 git clone https://github.com/Fr3dMer/softeng_module.git
+# Create conda environment
 conda env create -n PanelAppDB --file environment.yml
+# Activate conda environment
 conda activate PanelAppDB
+# Create directory to house your database
 mkdir db
 ```
 
-## Install via pip
-- This section has been added to satisfy the rebric 
+# Install via pip 
 ```bash
+# Clone PanelAppDB from Github repository
 git clone https://github.com/Fr3dMer/softeng_module.git
+# Install requirements
 # Recommend creating venv or conda environment and activating it before carrying out this step
 pip install -r docs/requirements.txt
+# Create directory to house your database
 mkdir db
 ```
-## Running script localy using conda environment above in normal mode
+
+Usage
+------
+PanelAppDB can be run in the conda environent created in the steps above, or in a Docker container.
+
+# Running script localy using conda environment
+To run in the conda enviroment, ensure the environment is activated and submit your desired query using the corresponding arguments (discussed below).
+eg:
 ```bash
 conda activate PanelAppDB
-mkdir db
-python PanelAppDB.py -r R45 -g 123 -pid 123 -sid 456 -f 'db/'
+python PanelAppDB.py <PARAMS HERE>
+# Example:
+python PanelAppDB.py -r R45
 ```
-## Building and running script inside container 
+
+# Building and running script inside container 
+To run in a container, build the container in docker then run it with docker run.
+eg:
 ```bash
 sudo docker build --rm -t "panel_app_db" .
 sudo docker run --rm panel_app_db <PARAMS HERE>
-# example
-sudo docker run --rm panel_app_db -p 3 -g 123 -pid 123 -sid 456 -d 
+# example:
+sudo docker run --rm panel_app_db -r R45 
 ```
 
-## Running script localy using conda environment above in debug mode
+# Retreiving Pannel Information
+Once the tool is successfully installed, it can be used to retrieve panel information.
+
+Search by r-code:
 ```bash
-conda activate PanelAppDB
-mkdir db
-python PanelAppDB.py -r R45 -g 123 -pid 123 -sid 456 -d -f 'db/'
+# To search by r-code, use the -r or --rcode flag
+python PanelAppDB.py -r R45
 ```
 
 
 
-## Tests
+Tests
+---------------
 To run tests, run the following command in root:
 ```bash
 pytest test/
