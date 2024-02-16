@@ -68,7 +68,7 @@ Once the tool is successfully installed, it can be used to retrieve panel inform
 #### Search by r-code:
 ```bash
 # To search by r-code, use the -r or --rcode flag
-python PanelAppDB.py -r R45
+python panel_app_db.py -r R45
 ```
 
 This will return the panel id, Version, disease code and a table of gene regions covered by the panel:
@@ -96,18 +96,19 @@ Last updated:        2023-03-22
 The PanelApp API uses a unique panel ID separate from R code, you can search by this too.
 ```bash
 #To search by the PanelApp ID number, use -p or --panel_id flags
-python PanelAppDB.py -p 512
+python panel_app_db.py -p 512
 ```
 This will return the same output as search by R code as outlined above.
 
 #### Generate BED Files
-PanelAppDB can be used to generate BED files for queried panels and save them locally.
+PanelAppDB can be used to generate BED files for queried panels.
+The commands below will save the generated BED file locally and print the relevant panel information to the terminal.
 
 ##### Generate GRCh37 BED Files:
 Specify the path and desired file name to save the GRCh37 BED file and the R-code of the target panel.
 ```bash
 # Use -b37 or --bed37 to specify the path and desired BED filename
-python PanelAppDB.py -r R45 -b37 'db/R45_v1.bed'
+python panel_app_db.py -r R45 -b37 'db/R45_v1.bed'
 ```
 This example will generate a bed file using GRCh37 loci for the current R45 panel and save it locally with a path of db/R45_v1.bed.
 
@@ -115,7 +116,7 @@ This example will generate a bed file using GRCh37 loci for the current R45 pane
 Specify the path and desired file name to save the GRCh37 BED file and the R-code of the target panel.
 ```bash
 # Use -b38 or --bed38 to specify the path and desired BED filename
-python PanelAppDB.py -r R45 -b38 'db/R45_v2.bed'
+python panel_app_db.py -r R45 -b38 'db/R45_v2.bed'
 ```
 This example will generate a bed file using GRCh38 loci for the current R45 panel and save it locally with a path of db/R45_v2.bed.
 
@@ -132,21 +133,21 @@ This requires 4 arguements:
 
 ```bash
 # To insert patient data use the flags listed above
-python PanelAppDB.py -r R46 -pid 133 -sid 433 -f 'db/'
+python panel_app_db.py -r R46 -pid 133 -sid 433 -f 'db/'
 ```
 
 #### Search for Patient Data
 Patient data can be searched by patient ID number.
 ```bash
 # To search for patient records, use -g or --get_patient_data flags to specify the patient ID
-python PanelAppDB.py -g 124 -f 'db/'
+python panel_app_db.py -g 124 -f 'db/'
 ```
 
 #### Run in Debug mode
-The module can be run in debug mode by using the -d or --debug_mode flags
+All the above commands can be run in debug mode by using the -d or --debug_mode flags. For example, to search for a panel by R-code in debug mode:
 ```bash
 # To search for a panel in debug mode use the -d flag
-python PanelAppDB.py -r R46 -d
+python panel_app_db.py -r R46 -d
 ```
 
 ### Tests
