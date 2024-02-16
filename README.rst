@@ -12,11 +12,6 @@ Functionality provided by PanelAppDB include:
 - Search for gene panels used for specific patients
 
 
-Proposed structure of app
-----------------------------
-
-.. image:: docs/Flowchart.png
-   :width: 1000
 
 Licence
 --------
