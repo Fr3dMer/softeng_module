@@ -5,8 +5,7 @@ PanelAppDB is a tool to search and store gene panel information for genetic test
 
 - For help please use `-h` command
 
-Functionality
----------------
+## Functionality
 Functionality provided by PanelAppDB include:
 - Search for gene panel information by R code
 - Generate BED file for gene panels
@@ -14,10 +13,9 @@ Functionality provided by PanelAppDB include:
 
 ReadTheDocs documentation available at: https://softeng-module-amyg.readthedocs.io/en/latest/
 
-Installation
----------------
+## Installation
 
-# Install via conda
+### Install via conda
 ```bash
 # Clone PanelAppDB from Github repository
 git clone https://github.com/Fr3dMer/softeng_module.git
@@ -29,7 +27,7 @@ conda activate PanelAppDB
 mkdir db
 ```
 
-# Install via pip 
+### Install via pip 
 ```bash
 # Clone PanelAppDB from Github repository
 git clone https://github.com/Fr3dMer/softeng_module.git
@@ -40,11 +38,10 @@ pip install -r docs/requirements.txt
 mkdir db
 ```
 
-Usage
-------
+## Usage
 PanelAppDB can be run in the conda environent created in the steps above, or in a Docker container.
 
-# Running script localy using conda environment
+### Running script localy using conda environment
 To run in the conda enviroment, ensure the environment is activated and submit your desired query using the corresponding arguments (discussed below).
 eg:
 ```bash
@@ -54,7 +51,7 @@ python PanelAppDB.py <PARAMS HERE>
 python PanelAppDB.py -r R45
 ```
 
-# Building and running script inside container 
+### Building and running script inside container 
 To run in a container, build the container in docker then run it with docker run.
 eg:
 ```bash
@@ -64,7 +61,7 @@ sudo docker run --rm panel_app_db <PARAMS HERE>
 sudo docker run --rm panel_app_db -r R45 
 ```
 
-# Retreiving Pannel Information
+### Retreiving Pannel Information
 Once the tool is successfully installed, it can be used to retrieve panel information.
 
 Search by r-code:
@@ -75,8 +72,7 @@ python PanelAppDB.py -r R45
 
 
 
-Tests
----------------
+## Tests
 To run tests, run the following command in root:
 ```bash
 pytest test/
