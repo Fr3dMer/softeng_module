@@ -12,7 +12,7 @@ import src.api as api_module
 import src.cli as cli_module
 import src.logging as log_obj
 import src.database_3_0 as db_obj
-import src.JSON_parsing as parser_obj
+import src.json_parsing as parser_obj
 
 
 def main():
