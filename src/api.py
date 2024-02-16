@@ -8,8 +8,8 @@ Date modified : 2023-12-08
 import requests
 
 
-class Api_Obj():
-
+class ApiObj():
+    '''Create class for the API functions'''
     def __init__(self, logger):
         self.log = logger
 

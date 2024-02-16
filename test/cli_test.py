@@ -23,7 +23,7 @@ def test_cli_obj_valid_args():
             "test", 
             "-b38", 
             "test"]
-    cli = cli_obj.cli_obj(args)
+    cli = cli_obj.CliObj(args)
 
     assert cli.args.panel_id == 1
     assert cli.args.rcode == "rcode"
@@ -38,7 +38,7 @@ def test_cli_obj_invalid_combination_args():
     args = ["-p", "1", "-r", "rcode", "-sid", "sampleID"]
 
     with pytest.raises(SystemExit):
-        cli = cli_obj.cli_obj(args)
+        cli = cli_obj.CliObj(args)
 
 
 def test_cli_obj_no_sampleid():
@@ -46,7 +46,7 @@ def test_cli_obj_no_sampleid():
     args = ["-pid", "patientID"]
 
     with pytest.raises(SystemExit):
-        cli = cli_obj.cli_obj(args)
+        cli = cli_obj.CliObj(args)
 
 
 def test_cli_obj_no_patientid():
@@ -54,4 +54,4 @@ def test_cli_obj_no_patientid():
     args = ["-p", "1", "-r", "rcode", "-sid", "sampleID"]
 
     with pytest.raises(SystemExit):
-        cli = cli_obj.cli_obj(args)
+        cli = cli_obj.CliObj(args)

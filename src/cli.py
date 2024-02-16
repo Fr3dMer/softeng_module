@@ -8,7 +8,7 @@ import os
 import argparse
 
 
-class cli_obj():
+class CliObj():
 
     """ Obj for parsing and holding params passed in at start.
 

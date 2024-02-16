@@ -18,7 +18,7 @@ import src.logging as log_obj
 @pytest.fixture
 def api_setup():
     '''Setup api for testing'''
-    yield api_obj.Api_Obj(log_obj.LoggerManager())
+    yield api_obj.ApiObj(log_obj.LoggerManager())
 
 @pytest.fixture
 def normal_json():
