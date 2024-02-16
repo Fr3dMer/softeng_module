@@ -48,7 +48,7 @@ eg:
 conda activate PanelAppDB
 python PanelAppDB.py <PARAMS HERE>
 # Example:
-python PanelAppDB.py -r R45
+python panel_app_db.py -r R45
 ```
 
 ### Building and running script inside container 
