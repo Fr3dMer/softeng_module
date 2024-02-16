@@ -1,30 +1,24 @@
 Usage
 =====
+PanelAppDB can be run in the conda environent created in the steps above, or in a Docker container.
 
-Installation
-----------------
-PanelAppDB can be installed using either conda or pip.
-Please see below for step by step installation instructions.
+Running script localy using conda environment
+----------------------------------------------
+To run in the conda enviroment, ensure the environment is activated and submit your desired query using the corresponding arguments (discussed below). eg::
 
-**Install via conda**::
-
-   # Clone PanelAppDB from Github repository
-   git clone https://github.com/Fr3dMer/softeng_module.git
-   # Create conda environment
-   conda env create -n PanelAppDB --file environment.yml
-   # Activate conda environment
    conda activate PanelAppDB
+   python PanelAppDB.py <PARAMS HERE>
+   # Example:
+   python PanelAppDB.py -r R45
 
+Building and running script inside container
+---------------------------------------------
+To run in a container, build the container in docker then run it with docker run. eg: ::
 
-
-**Install via pip**::
-
-   # Clone PanelAppDB from Github repository
-   git clone https://github.com/Fr3dMer/softeng_module.git
-   # Install requirements
-   # Recommend creating venv or conda environment and activating it before carrying out this step
-   pip install -r docs/requirements.txt
-
+   sudo docker build --rm -t "panel_app_db" .
+   sudo docker run --rm panel_app_db <PARAMS HERE>
+   # example:
+   sudo docker run --rm panel_app_db -r R45 
 
 Retreiving Pannel Information
 ------------------------------
@@ -105,10 +99,12 @@ Search for Patient Data
 -------------------------
 Patient data can be searched by patient ID number.
 
+
 **Search by Patient ID**::
 
    # To search for patient records, use -g or --get_patient_data flags to specify the patient ID
    python PanelAppDB.py -g 124 -f 'db/'
+
 
 
 Run in Debug mode 
