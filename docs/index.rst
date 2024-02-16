@@ -5,7 +5,7 @@ Welcome to PanelAppDB documentation!
 PanelAppDB is a tool to search and store gene panel information for genetic tests included in the National Genomic Testing Directory.
 
 Check out the :doc:`usage` section for further information, including
-how to :ref:`installation` the project.
+how to :ref:`install` the project.
 
 .. note::
 
