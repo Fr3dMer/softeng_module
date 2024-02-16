@@ -1,6 +1,5 @@
-
 """****************************************************************************
-File          : JSON_parsing.py
+File          : json_parsing.py
 About         : Parse information from PanelApp API to human readable text 
 Author        : Amy Grimwood
 ****************************************************************************"""
