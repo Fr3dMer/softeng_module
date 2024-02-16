@@ -8,7 +8,7 @@ Date modified : 2023-12-08
 import requests
 
 
-class api_obj():
+class Api_Obj():
 
     def __init__(self, logger):
         self.log = logger

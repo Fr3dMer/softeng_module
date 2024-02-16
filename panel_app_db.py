@@ -27,7 +27,7 @@ def main():
     log.logger.debug("Initialising objects")
 
     # Instantiate api obj, parser and DB
-    api = api_module.api_obj(log)
+    api = api_module.Api_Obj(log)
     parser = parser_obj.Parser("args")
     # See if db url has been added 
     if(type(cli.args.fdb) == str):
