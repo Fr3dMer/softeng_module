@@ -1,4 +1,4 @@
-Installation
+Install
 =============
 PanelAppDB can be installed using either conda or pip.
 Please see below for step by step installation instructions.
