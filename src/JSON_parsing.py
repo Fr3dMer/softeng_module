@@ -89,7 +89,7 @@ class Parser():
 
         
     def generate_bed(self,input_json,ref_seq='grch38'):
-      """Generate BED file text, including error handelling 
+        """Generate BED file text, including error handelling 
         for jsons mimissing the 'genes' or 'location' key
         """
         try:
