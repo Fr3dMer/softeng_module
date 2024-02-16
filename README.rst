@@ -12,7 +12,6 @@ Functionality provided by PanelAppDB include:
 - Search for gene panels used for specific patients
 
 
-
 Licence
 --------
 MIT Licence Copyright 2024 Fredrick, Abi, Amy
