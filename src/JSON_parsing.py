@@ -1,3 +1,4 @@
+
 """****************************************************************************
 File          : JSON_parsing.py
 About         : Parse information from PanelApp API to human readable text 
@@ -21,6 +22,7 @@ class Parser():
     def __init__(self,args):
         self.args = args
 
+
     def extract_panel_id(self,input_json):
         """Extract panel id from json, including error handelling for jsons missing the 'id' key"""
         try:
@@ -28,8 +30,8 @@ class Parser():
         except KeyError:
             print('KeyError:PanelApp output JSON doesn\' contain \'id\' key')
             panel_id = np.nan
-
         return panel_id
+
 
     def extract_version(self,input_json):
         """Extract panel version from json, including 
@@ -42,6 +44,7 @@ class Parser():
             panel_version = np.nan
         return panel_version
 
+
     def extract_disease(self,input_json):
         """Extract Disease from json, including error handelling for 
         jsons missing the 'relevant_disorders' key
@@ -52,6 +55,7 @@ class Parser():
             print('KeyError:PanelApp output JSON doesn\' contain \'relevant_disorders\' key')
             disease = np.nan
         return disease
+
 
     def extract_last_updated(self,input_json):
         """Extract Date Last Updated from json, including 
@@ -64,7 +68,8 @@ class Parser():
             print('KeyError:PanelApp output JSON doesn\' contain \'version_created\' key')
             last_updated = np.nan
         return last_updated
-    
+
+
     def extract_genes(self,input_json):
         """Extract genes on panel from json, including error 
         handelling for jsons mimissing the 'genes', 'gene_data' 
@@ -74,9 +79,11 @@ class Parser():
             gene_info = input_json['genes']
             gene_list = []
             for x in gene_info:
+
                 #Given a key, the get() method returns paired value from
                 #dict (documentation found at https://docs.python.org/2/library/stdtypes.html 
                 #in section 5.8)
+
                 hgnc_symbol = x.get('gene_data',{}).get('hgnc_symbol')
                 hgnc_id = x.get('gene_data',{}).get('hgnc_id')
                 GRch38_coord = (x.get('gene_data',{}).get('ensembl_genes',{})
@@ -90,6 +97,7 @@ class Parser():
             gene_list = np.nan
         return gene_list
 
+        
     def generate_bed(self,input_json,ref_seq='grch38'):
         """Generate BED file text, including error handelling 
         for jsons mimissing the 'genes' or 'location' key
@@ -111,7 +119,7 @@ class Parser():
             location_str = "\n".join(location_list)
             bed_str = location_str.replace(':',' ').replace('-',' ')
         except KeyError:
-            print('KeyError:PanelApp output JSON doesn\'t contain \'genes\' or \'location\' key')
+            print('KeyError:PanelApp output JSON doesn\'t /contain \'genes\' or \'location\' key')
+
             bed_str = np.nan
         return bed_str
-

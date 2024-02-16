@@ -106,7 +106,7 @@ class cli_obj():
 
         # Check if any panel id entered
         if(self.args.panel_id == None and
-            self.args.rcode == None):
+           self.args.rcode == None):
             self.return_panel_info = False
         else:
             self.return_panel_info = True

@@ -1,7 +1,8 @@
-Welcome to PannelAppDB documentation!
+Welcome to PanelAppDB documentation!
 ===================================
 
-**PannelAppDB**  is a Python library that ?????????????
+**PanelAppDB**  
+PanelAppDB is a tool to search and store gene panel information for genetic tests included in the National Genomic Testing Directory.
 
 Check out the :doc:`usage` section for further information, including
 how to :ref:`installation` the project.
