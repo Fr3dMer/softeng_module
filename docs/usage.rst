@@ -1,5 +1,24 @@
 Usage
 =====
+PanelAppDB can be run in the conda environent created in the steps above, or in a Docker container.
+
+Running script localy using conda environment
+----------------------------------------------
+To run in the conda enviroment, ensure the environment is activated and submit your desired query using the corresponding arguments (discussed below). eg::
+
+   conda activate PanelAppDB
+   python PanelAppDB.py <PARAMS HERE>
+   # Example:
+   python PanelAppDB.py -r R45
+
+Building and running script inside container
+---------------------------------------------
+To run in a container, build the container in docker then run it with docker run. eg: ::
+
+   sudo docker build --rm -t "panel_app_db" .
+   sudo docker run --rm panel_app_db <PARAMS HERE>
+   # example:
+   sudo docker run --rm panel_app_db -r R45 
 
 Retreiving Pannel Information
 ------------------------------
