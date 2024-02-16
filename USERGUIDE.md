@@ -38,7 +38,7 @@ To run in the conda enviroment, ensure the environment is activated and submit y
 eg:
 ```bash
 conda activate PanelAppDB
-python PanelAppDB.py <PARAMS HERE>
+python panel_app_db.py <PARAMS HERE>
 # Example:
 python panel_app_db.py -r R45
 ```
