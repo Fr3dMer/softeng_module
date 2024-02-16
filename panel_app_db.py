@@ -20,14 +20,14 @@ def main():
     in one place"""
 
     # Initiaslise CLI obj
-    cli = cli_module.cli_obj(sys.argv[1:])
+    cli = cli_module.CliObj(sys.argv[1:])
 
     # Init logger
     log = log_obj.LoggerManager(debug_mode=cli.args.debug_mode)
     log.logger.debug("Initialising objects")
 
     # Instantiate api obj, parser and DB
-    api = api_module.Api_Obj(log)
+    api = api_module.ApiObj(log)
     parser = parser_obj.Parser("args")
     # See if db url has been added 
     if(type(cli.args.fdb) == str):
