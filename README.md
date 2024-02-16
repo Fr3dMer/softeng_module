@@ -19,6 +19,8 @@ ReadTheDocs documentation available at: https://softeng-module-amyg.readthedocs.
 ```bash
 # Clone PanelAppDB from Github repository
 git clone https://github.com/Fr3dMer/softeng_module.git
+# Navigate to cloned repository
+cd softeng_module/
 # Create conda environment
 conda env create -n PanelAppDB --file environment.yml
 # Activate conda environment
@@ -31,6 +33,8 @@ mkdir db
 ```bash
 # Clone PanelAppDB from Github repository
 git clone https://github.com/Fr3dMer/softeng_module.git
+# Navigate to cloned repository
+cd softeng_module/
 # Install requirements
 # Recommend creating venv or conda environment and activating it before carrying out this step
 pip install -r docs/requirements.txt
