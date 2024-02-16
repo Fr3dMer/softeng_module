@@ -6,11 +6,11 @@ Author        : Freddie Mercer
 
 import sys
 import json
+from datetime import datetime
 import pandas as pd
 import src.api as api_module
 import src.cli as cli_module
 import src.logging as log_obj
-from datetime import datetime
 import src.database_3_0 as db_obj
 import src.JSON_parsing as parser_obj
 
