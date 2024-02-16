@@ -1,6 +1,5 @@
 Usage
 =====
-rtdtytuh hgtfytu
 
 Installation
 ----------------
@@ -120,4 +119,3 @@ The module can be run in debug mode by using the -d or --debug_mode flags
 
    # To search for a panel in debug mode use the -d flag
    python PanelAppDB.py -r R46 -d
-
