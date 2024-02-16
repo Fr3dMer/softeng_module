@@ -3,7 +3,9 @@ PanelAppDB
 
 PanelAppDB is a tool to search and store gene panel information for genetic tests included in the National Genomic Testing Directory.
 
-- For help please use `-h` command
+- For help please use `-h` command or inspect USERGUIDE.md :  [User Guide](/USERGUIDE.md)
+
+ReadTheDocs documentation available at: https://softeng-module-amyg.readthedocs.io/en/latest/
 
 ## Functionality
 Functionality provided by PanelAppDB include:
@@ -11,9 +13,6 @@ Functionality provided by PanelAppDB include:
 - Generate BED file for gene panels
 - Search for gene panels used for specific patients
 
-ReadTheDocs documentation available at: https://softeng-module-amyg.readthedocs.io/en/latest/
-
-## Link to userguide.md :  [User Guide](/USERGUIDE.md)
 
 ## PanelApp API
 The PanelApp API is utilised with PanelAppDB to retreive NTDR genetic testing panels and their corresponding data. 
