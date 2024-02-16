@@ -10,8 +10,8 @@ import src.cli as cli_obj
 
 
 def test_cli_obj_valid_args():
-    # Test case for making sure all args wo
-    args = ["-p", 
+    '''Test case for making sure all args work'''
+    args = ["-p",
             "1", 
             "-r", 
             "rcode", 
@@ -34,7 +34,7 @@ def test_cli_obj_valid_args():
 
 
 def test_cli_obj_invalid_combination_args():
-    # Test case for invalid combination of arguments
+    '''Test case for invalid combination of arguments'''
     args = ["-p", "1", "-r", "rcode", "-sid", "sampleID"]
 
     with pytest.raises(SystemExit):
@@ -42,7 +42,7 @@ def test_cli_obj_invalid_combination_args():
 
 
 def test_cli_obj_no_sampleid():
-    # Test case for not providing sampple_id wiht rcode
+    '''Test case for not providing sampple_id wiht rcode'''
     args = ["-pid", "patientID"]
 
     with pytest.raises(SystemExit):
@@ -50,7 +50,7 @@ def test_cli_obj_no_sampleid():
 
 
 def test_cli_obj_no_patientid():
-    # Test case for not providing patientID with sampleID
+    '''Test case for not providing patientID with sampleID'''
     args = ["-p", "1", "-r", "rcode", "-sid", "sampleID"]
 
     with pytest.raises(SystemExit):
